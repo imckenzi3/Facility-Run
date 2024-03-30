@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3n56t4n2k20x"]
+[gd_scene load_steps=3 format=3 uid="uid://blwrdnb30rk1q"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_amqsc"]
 [ext_resource type="PackedScene" uid="uid://busvdrve8cb8s" path="res://characters/character.tscn" id="1_vpajx"]
@@ -6,16 +6,9 @@
 [node name="Enemy" instance=ExtResource("1_vpajx")]
 script = ExtResource("1_amqsc")
 
-[node name="FiniteStateMachine" parent="." index="0"]
-script = null
-
-[node name="Sprite2D" parent="." index="1"]
-modulate = Color(0.976471, 0.109804, 0, 1)
-
 [node name="Shovel" parent="." index="4"]
 visible = false
 
 [node name="PathTimer" type="Timer" parent="." index="6"]
+wait_time = 0.5
 autostart = true
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]

@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://busvdrve8cb8s"]
+[gd_scene load_steps=12 format=3 uid="uid://47sdamteq6gy"]
 
-[ext_resource type="Script" path="res://scripts/characterBody2D.gd" id="1_6e2f0"]
-[ext_resource type="Texture2D" uid="uid://cr5aixgwjkvoh" path="res://assets/characters/icon.svg" id="2_irf1k"]
-[ext_resource type="Texture2D" uid="uid://b4ueluv1utx14" path="res://assets/weapons/Shovel.png" id="3_8nf7k"]
-[ext_resource type="Texture2D" uid="uid://b4f6usb3wr0av" path="res://assets/Slash.png" id="4_j1234"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_nhgar"]
-[ext_resource type="Script" path="res://scripts/FSM.gd" id="6_mobmj"]
+[ext_resource type="Script" path="res://characters/Player.gd" id="2_lu0bi"]
+[ext_resource type="Script" path="res://scripts/FSM.gd" id="2_unkqf"]
+[ext_resource type="Texture2D" uid="uid://cr5aixgwjkvoh" path="res://assets/characters/icon.svg" id="3_gkdl6"]
+[ext_resource type="Texture2D" uid="uid://b4ueluv1utx14" path="res://assets/weapons/Shovel.png" id="4_ucv67"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="5_hr2p0"]
+[ext_resource type="Texture2D" uid="uid://b4f6usb3wr0av" path="res://assets/Slash.png" id="6_3qmih"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ap1if"]
 radius = 14.8755
@@ -146,17 +146,17 @@ _data = {
 "attack": SubResource("Animation_8aj2m")
 }
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_6e2f0")
+script = ExtResource("2_lu0bi")
 
 [node name="FiniteStateMachine" type="Node" parent="."]
-script = ExtResource("6_mobmj")
+script = ExtResource("2_unkqf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.233)
-texture = ExtResource("2_irf1k")
+texture = ExtResource("3_gkdl6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
@@ -170,13 +170,13 @@ rotation = -1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="Shovel/Node2D"]
 position = Vector2(7, 3)
-texture = ExtResource("3_8nf7k")
+texture = ExtResource("4_ucv67")
 offset = Vector2(5, 4)
 
 [node name="Hitbox" type="Area2D" parent="Shovel/Node2D/Sprite2D"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("4_nhgar")
+script = ExtResource("5_hr2p0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shovel/Node2D/Sprite2D/Hitbox"]
 position = Vector2(4, 5)
@@ -186,7 +186,7 @@ shape = SubResource("CapsuleShape2D_or1vx")
 [node name="SlashSprite2D" type="Sprite2D" parent="Shovel"]
 visible = false
 position = Vector2(29, -6)
-texture = ExtResource("4_j1234")
+texture = ExtResource("6_3qmih")
 flip_h = true
 hframes = 6
 vframes = 5
