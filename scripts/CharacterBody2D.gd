@@ -1,19 +1,24 @@
 extends CharacterBody2D
 #class_name Character, "res://cow.png"
 
-const speed = 550
-const jump_power = -2000
+const speed = 450
+const jump_power = -1200
 
 #acceleration
-const acc = 50
-const friction = 70
+const acc = 40
+const friction = 60
 
 #gravity
-const gravity = 120
+const gravity = 100
 
 #jumping
 const max_jumps = 2
 var current_jumps = 1
+
+#shovel - ref to node
+@onready var shovel: Node2D = get_node("Shovel")
+@onready var shovel_animation_player: AnimationPlayer = shovel.get_node("ShovelAnimationPlayer")
+
 
 #loop over and over
 func _physics_process(delta):
@@ -35,6 +40,18 @@ func _physics_process(delta):
 	#shows what key pressing
 	#print(input_dir)
 	
+	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
+	#update the rotation of the shovel using the angle of the mouse direction
+	shovel.rotation = mouse_direction.angle()
+	if shovel.scale.y == 1 and mouse_direction.x < 0:
+		shovel.scale.y = -1
+	elif shovel.scale.y == -1 and mouse_direction.x > 0:
+		shovel.scale.y = 1
+	
+	#check if attack is pressed and the attack animation is not playing
+	if Input.is_action_just_pressed("ui_attack") and not shovel_animation_player.is_playing():
+		print("Player attacked")
+		shovel_animation_player.play("attack")
 	
 func input() -> Vector2:
 	var input_dir = Vector2.ZERO
