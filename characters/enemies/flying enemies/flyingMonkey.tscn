@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://7fw0vna7cqoj"]
+
+[ext_resource type="Texture2D" uid="uid://c7xola47mbtpn" path="res://assets/characters/MankeyJungle_Idle_strip5.png" id="1_pbrdn"]
+[ext_resource type="PackedScene" uid="uid://1vmcl3p6n5ac" path="res://characters/enemies/enemy.tscn" id="1_v4n5a"]
+
+[node name="enemy" instance=ExtResource("1_v4n5a")]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_pbrdn")
+hframes = 5
