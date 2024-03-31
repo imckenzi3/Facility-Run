@@ -8,7 +8,8 @@ func _ready() -> void:
 	set_state(states.idle)
 
 func _state_logic(_delta: float) -> void:
-	parent.get_input()
+	parent.input()
+	parent.jump()
 	parent.move()
 
 func _get_transition() -> int:
