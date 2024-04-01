@@ -25,7 +25,8 @@ var current_jumps = 1
 @onready var state_machine: Node = get_node("FiniteStateMachine")
 
 #health
-@export var hp: int = 2
+@export var hp: int = 2: set = set_hp
+signal hp_changed(new_hp)
 
 #enemy tracking movement
 var mov_direction: Vector2 = Vector2.ZERO
@@ -56,7 +57,7 @@ func move() -> void:
 	
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
-	hp -= dam
+	self.hp -= dam
 	
 	#if after taking damage the hp is greater than 0
 	#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
@@ -67,3 +68,9 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	else:
 		state_machine.set_state(state_machine.states.dead)
 		velocity += dir * force * 2
+		
+#called every time we modify the value of the hp variable
+func set_hp(new_hp: int) -> void:
+	hp = new_hp
+	emit_signal("hp_changed", new_hp)
+	#update the hp variable and emit the isgnal hp_changed with new_hp as parameter.
