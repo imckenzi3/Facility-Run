@@ -25,10 +25,13 @@ func chase() -> void:
 	##moves enemy
 	move_and_slide() #move player func
 	
+	#is enemy facing player
+	var is_facing_player: Vector2 = navigation_agent.get_next_path_position() - global_position
+	
 	#change sprite based on player location
-	if dir.x > 0 and animated_sprite.flip_h:
+	if is_facing_player.x > 0 and animated_sprite.flip_h:
 		animated_sprite.flip_h = false
-	elif dir.x < 0 and not animated_sprite.flip_h:
+	elif is_facing_player.x < 0 and not animated_sprite.flip_h:
 		animated_sprite.flip_h = true
 
 func makepath() -> void:

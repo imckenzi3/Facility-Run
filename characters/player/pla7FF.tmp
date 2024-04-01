@@ -316,6 +316,7 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_pgprf")
+hp = null
 
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("2_q1q21")

@@ -1,33 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://7fw0vna7cqoj"]
+[gd_scene load_steps=15 format=3 uid="uid://7fw0vna7cqoj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_3qrmf"]
 [ext_resource type="Texture2D" uid="uid://c7xola47mbtpn" path="res://assets/characters/MankeyJungle_Idle_strip5.png" id="2_tvecr"]
 [ext_resource type="Script" path="res://scripts/FlyingCreatureFSM.gd" id="2_u8kux"]
-[ext_resource type="Texture2D" uid="uid://dkohi33d6eaqw" path="res://assets/characters/MankeyJungle_Walk_strip6.png" id="4_jdh8j"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t3rpe"]
-atlas = ExtResource("4_jdh8j")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j5reu"]
-atlas = ExtResource("4_jdh8j")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pimsg"]
-atlas = ExtResource("4_jdh8j")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vurpq"]
-atlas = ExtResource("4_jdh8j")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3m28"]
-atlas = ExtResource("4_jdh8j")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmo1p"]
-atlas = ExtResource("4_jdh8j")
-region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cskqd"]
 atlas = ExtResource("2_tvecr")
@@ -53,29 +28,6 @@ region = Rect2(128, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t3rpe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j5reu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pimsg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vurpq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r3m28")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rmo1p")
-}],
-"loop": true,
-"name": &"chase",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_cskqd")
 }, {
 "duration": 1.0,
@@ -91,7 +43,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gy6l8")
 }],
 "loop": true,
-"name": &"hurt",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -109,7 +61,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"chase"]
+"values": [&"default"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -123,10 +75,61 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_b5rfv"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_b86ww"]
-resource_name = "chase"
-length = 0.5
+resource_name = "fly"
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -138,7 +141,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"chase"]
+"values": [&"default"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -147,34 +150,30 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3]
 }
-
-[sub_resource type="Animation" id="Animation_b5rfv"]
-resource_name = "hurt"
-length = 0.4
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqpcp"]
 _data = {
 "RESET": SubResource("Animation_w4mrf"),
-"chase": SubResource("Animation_b86ww"),
+"fly": SubResource("Animation_b86ww"),
 "hurt": SubResource("Animation_b5rfv")
 }
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_3qrmf")
 
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("2_u8kux")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_urdgv")
-animation = &"chase"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6cx73")

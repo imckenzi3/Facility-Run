@@ -1017,4 +1017,7 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 196608,
 [node name="Player" parent="NavigationAgent2D" instance=ExtResource("2_ubo8u")]
 
 [node name="FlyingEnemy" parent="NavigationAgent2D" instance=ExtResource("3_ers1i")]
-position = Vector2(375, 91)
+position = Vector2(390, 55)
+
+[node name="FlyingEnemy2" parent="NavigationAgent2D" instance=ExtResource("3_ers1i")]
+position = Vector2(388, 191)

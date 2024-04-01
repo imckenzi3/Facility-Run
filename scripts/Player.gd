@@ -4,6 +4,9 @@ extends Character
 @onready var shovel: Node2D = get_node("Shovel")
 @onready var shovel_animation_player: AnimationPlayer = shovel.get_node("ShovelAnimationPlayer")
 
+#shovel - ref to hitbox
+@onready var shovel_hitbox: Area2D = get_node("Shovel/Node2D/Sprite2D/Hitbox")
+
 func _physics_process(_delta: float) -> void:
 	#movement
 	var input_dir: Vector2 = input()
@@ -15,7 +18,10 @@ func _physics_process(_delta: float) -> void:
 		add_friction()
 		#play idle animations here
 		#play_animation()
-	player_movement()
+
+	player_movement() #player movement
+
+	jump() #player 
 	
 	#mouse direction
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
@@ -27,6 +33,9 @@ func _physics_process(_delta: float) -> void:
 		
 	#update the rotation of the shovel using the angle of the mouse direction
 	shovel.rotation = mouse_direction.angle()
+	#set the knockback direction of the hitbox with the mouse direction
+	shovel_hitbox.knockback_direction = mouse_direction
+	
 	if shovel.scale.y == 1 and mouse_direction.x < 0:
 		shovel.scale.y = -1
 	elif shovel.scale.y == -1 and mouse_direction.x > 0:
@@ -36,22 +45,10 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_attack") and not shovel_animation_player.is_playing():
 		print("Player attacked")
 		shovel_animation_player.play("attack")
-		
-	#jump
-	jump()
 
 func player_movement():
 	move_and_slide()
-#
-#func get_input() -> void:
-	#mov_direction = Vector2.ZERO
-	##if Input.is_action_pressed("ui_down"):
-		##mov_direction += Vector2.DOWN
-	#if Input.is_action_pressed("ui_left"):
-		#mov_direction += Vector2.LEFT
-	#if Input.is_action_pressed("ui_right"):
-		#mov_direction += Vector2.RIGHT
-		
+	
 #movement
 func input() -> Vector2:
 	var input_dir = Vector2.ZERO
@@ -61,25 +58,22 @@ func input() -> Vector2:
 	input_dir = input_dir.normalized()
 	return input_dir
 
-#func jump():
-	#if Input.is_action_just_pressed("ui_up"):
-	##check if current jumps is less than our max jumps
-	##if we have jumped twice we do not want to jump again
-		#if current_jumps < max_jumps:
-			#velocity.y = jump_power
-			#current_jumps = current_jumps + 1
-	#else:
-			##adding gravity
-			#velocity.y += gravity
-			#
-			##setting velocity to zero makes player idle animation work
-			#
-		##hit the ground reset jumps
-	#if is_on_floor():
-		#current_jumps = 1
+#player jump
+func jump():
+	if Input.is_action_just_pressed("ui_up"):
+	#check if current jumps is less than our max jumps
+	#if we have jumped twice we do not want to jump again
+		if current_jumps < max_jumps:
+			velocity.y = jump_power
+			current_jumps = current_jumps + 1
+	else:
+			#adding gravity
+			velocity.y += gravity
+			
+			#setting velocity to zero makes player idle animation work
+			
+		#hit the ground reset jumps
+	if is_on_floor():
+		current_jumps = 1
 		
-#move
-func move() -> void:
-	mov_direction = mov_direction.normalized()
-	velocity += mov_direction * acc
-	velocity = velocity.limit_length(speed)
+

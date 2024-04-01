@@ -10,7 +10,7 @@ func _ready() -> void:
 func _state_logic(_delta: float) -> void:
 	parent.input()
 	parent.jump()
-	parent.move()
+	parent.player_movement()
 
 func _get_transition() -> int:
 	match state:
