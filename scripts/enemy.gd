@@ -36,13 +36,15 @@ func chase() -> void:
 
 func makepath() -> void:
 	navigation_agent.target_position = player.global_position
-
+	
 func _on_path_timer_timeout():
-	makepath()
-	#if is_instance_valid(player):
+	#stop enemy movement after playerdeath
+	if is_instance_valid(player):
+		makepath()
 		#_get_path_to_player()
-	#else:
-		#path_timer.stop()
-		#mov_direction = Vector2.ZERO
+	else:
+		path_timer.stop()
+		mov_direction = Vector2.ZERO
+		
 
 
