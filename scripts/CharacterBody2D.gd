@@ -57,5 +57,13 @@ func move() -> void:
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	hp -= dam
-	state_machine.set_state(state_machine.states.hurt)
-	velocity += dir * force
+	
+	#if after taking damage the hp is greater than 0
+	#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
+	#!!!knock back doesnt work - fix later if we want it
+	if hp > 0:
+		state_machine.set_state(state_machine.states.hurt)
+		velocity += dir * force
+	else:
+		state_machine.set_state(state_machine.states.dead)
+		velocity += dir * force * 2

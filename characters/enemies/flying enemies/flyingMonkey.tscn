@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://7fw0vna7cqoj"]
+[gd_scene load_steps=28 format=3 uid="uid://7fw0vna7cqoj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_3qrmf"]
 [ext_resource type="Texture2D" uid="uid://c7xola47mbtpn" path="res://assets/characters/MankeyJungle_Idle_strip5.png" id="2_tvecr"]
 [ext_resource type="Script" path="res://scripts/FlyingCreatureFSM.gd" id="2_u8kux"]
+[ext_resource type="Texture2D" uid="uid://ddwtko6uiogry" path="res://assets/effects/enemy_afterdead_explosion_anim_spritesheet.png" id="4_filqs"]
 [ext_resource type="Texture2D" uid="uid://dkohi33d6eaqw" path="res://assets/characters/MankeyJungle_Walk_strip6.png" id="4_jdh8j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3rpe"]
@@ -28,6 +29,22 @@ region = Rect2(128, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmo1p"]
 atlas = ExtResource("4_jdh8j")
 region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1twu2"]
+atlas = ExtResource("4_filqs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw33f"]
+atlas = ExtResource("4_filqs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssk6t"]
+atlas = ExtResource("4_filqs")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usyaa"]
+atlas = ExtResource("4_filqs")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cskqd"]
 atlas = ExtResource("2_tvecr")
@@ -76,6 +93,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1twu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw33f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssk6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usyaa")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cskqd")
 }, {
 "duration": 1.0,
@@ -99,6 +133,30 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_w4mrf"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dead"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_b86ww"]
 resource_name = "chase"
@@ -169,10 +227,64 @@ tracks/2/keys = {
 "values": [Color(0.815686, 0.0431373, 0, 1), Color(1, 1, 1, 1), Color(0.815686, 0.0431373, 0, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_1j7dl"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"dead"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.815686, 0.0431373, 0, 1), Color(1, 1, 1, 1), Color(0.815686, 0.0431373, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqpcp"]
 _data = {
 "RESET": SubResource("Animation_w4mrf"),
 "chase": SubResource("Animation_b86ww"),
+"dead": SubResource("Animation_1j7dl"),
 "hurt": SubResource("Animation_b5rfv")
 }
 
@@ -186,7 +298,7 @@ script = ExtResource("2_u8kux")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_urdgv")
-animation = &"chase"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6cx73")

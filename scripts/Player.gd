@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 	#update the rotation of the shovel using the angle of the mouse direction
 	shovel.rotation = mouse_direction.angle()
 	#set the knockback direction of the hitbox with the mouse direction
-	shovel_hitbox.knockback_direction = mouse_direction
+	shovel_hitbox.knockback_direction = mouse_direction # doesnt even work - theres no knock back in dark souls anyawys
 	
 	if shovel.scale.y == 1 and mouse_direction.x < 0:
 		shovel.scale.y = -1
