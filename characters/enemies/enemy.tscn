@@ -5,7 +5,7 @@
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_2dsjj")
 
 [node name="FiniteStateMachine" type="Node" parent="."]

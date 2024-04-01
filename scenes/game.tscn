@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://7le8u6k1gwb7"]
+[gd_scene load_steps=20 format=3 uid="uid://7le8u6k1gwb7"]
 
 [ext_resource type="Texture2D" uid="uid://cvrvgg7bw2gtw" path="res://assets/ui/health_ui.png" id="1_0uirs"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_mujna"]
 [ext_resource type="Texture2D" uid="uid://dd5itiyuci6aj" path="res://assets/background_door.png" id="1_njddr"]
 [ext_resource type="Texture2D" uid="uid://crrypmk57spm" path="res://assets/ui/progress bar.png" id="2_nng7e"]
 [ext_resource type="PackedScene" uid="uid://bbqprigllt4hc" path="res://characters/player/player.tscn" id="2_ubo8u"]
-[ext_resource type="PackedScene" uid="uid://7fw0vna7cqoj" path="res://characters/enemies/flying enemies/flyingMonkey.tscn" id="3_ers1i"]
 
 [sub_resource type="GDScript" id="GDScript_umt1g"]
 script/source = "extends Node2D
@@ -1032,11 +1031,5 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 196608,
 
 [node name="Player" parent="NavigationAgent2D" instance=ExtResource("2_ubo8u")]
 hp = 4
-
-[node name="FlyingEnemy" parent="NavigationAgent2D" instance=ExtResource("3_ers1i")]
-position = Vector2(390, 55)
-
-[node name="FlyingEnemy2" parent="NavigationAgent2D" instance=ExtResource("3_ers1i")]
-position = Vector2(388, 191)
 
 [connection signal="hp_changed" from="NavigationAgent2D/Player" to="UI" method="_on_player_hp_changed"]
