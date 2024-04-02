@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdmxh02v1j1d6"]
+[gd_scene load_steps=7 format=3 uid="uid://bdmxh02v1j1d6"]
 
-[ext_resource type="Texture2D" uid="uid://dd5itiyuci6aj" path="res://assets/background_door.png" id="1_50lao"]
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_fc1yq"]
+[ext_resource type="Texture2D" uid="uid://dd5itiyuci6aj" path="res://assets/background_door.png" id="2_nmb2f"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2e33a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -17,7 +18,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btx2n"]
-texture = ExtResource("1_50lao")
+texture = ExtResource("2_nmb2f")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -925,6 +926,7 @@ navigation_layer_0/layers = 1
 sources/2 = SubResource("TileSetAtlasSource_btx2n")
 
 [node name="Room" type="Node2D"]
+script = ExtResource("1_fc1yq")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -942,3 +944,7 @@ format = 2
 [node name="EnemyPositions" type="Node2D" parent="."]
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

@@ -4,11 +4,11 @@ extends Character #Character ref
 class_name Enemy
 
 #have to call "NavigationAgent2D/Player" to locate the player for enemy navigation
-@onready var player: CharacterBody2D = get_tree().current_scene.get_node("NavigationAgent2D/Player") #ref to player node
+@onready var player: CharacterBody2D = get_tree().current_scene.get_node("UI/Player") #ref to player node
 
 @onready var path_timer: Timer = get_node("PathTimer") #ref to Pathtimer node
 
-@onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D") #ref to navigation agent
+@onready var navigation_agent: NavigationAgent2D = get_parent().get_node("NavigationAgent2D") #ref to navigation agent
 
 #tracking speed
 const trackingSpeed = 55

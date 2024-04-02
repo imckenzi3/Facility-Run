@@ -4,7 +4,7 @@ const MIN_HEALTH: int = 23 #store min health
 
 var max_hp: int = 4
 
-@onready var player: CharacterBody2D = get_parent().get_node("NavigationAgent2D/Player")#ref to player 
+@onready var player: CharacterBody2D = get_parent().get_node("Player")#ref to player 
 @onready var health_bar: TextureProgressBar = get_node("HealthBar")#ref to hpbar
 
 func _ready() -> void:
