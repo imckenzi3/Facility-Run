@@ -2,8 +2,9 @@ extends CharacterBody2D
 class_name Character
 
 #speed & jump for player
-const speed = 450
-const jump_power = -600
+#less speed more jump = better feeling
+const speed = 55
+const jump_power = -650
 
 #speed for enemy
 @export var max_speed: int = 100

@@ -1,3 +1,4 @@
+@icon("res://assets/characters/Test_Dummy/Test_Dummy_Right.png") #icon 
 extends Character
 
 #shovel - ref to node
