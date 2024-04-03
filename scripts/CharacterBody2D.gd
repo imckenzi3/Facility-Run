@@ -1,9 +1,12 @@
 extends CharacterBody2D
 class_name Character
 
-#speed & jump
+#speed & jump for player
 const speed = 450
 const jump_power = -600
+
+#speed for enemy
+@export var max_speed: int = 100
 
 #acceleration
 const acc: int = 40
@@ -29,13 +32,13 @@ var current_jumps = 1
 signal hp_changed(new_hp)
 
 #enemy tracking movement
-var mov_direction: Vector2 = Vector2.ZERO
+var move_direction: Vector2 = Vector2.ZERO
 
 #animated_Sprite
 @onready var animated_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
 #loop over and over
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = lerp(velocity, Vector2.ZERO, FRICTION)
 		
 	#player_movement() # cant here call will move enemies
@@ -51,9 +54,10 @@ func add_friction():
 	
 #Basic Enemy Tracking
 func move() -> void:
-	mov_direction = mov_direction.normalized()
-	velocity += mov_direction * acc
-	velocity = velocity.limit_length(speed)
+	move_direction = move_direction.normalized()
+	velocity += move_direction * acc
+	#velocity = velocity.limit_length(speed)
+	velocity = velocity.limit_length(max_speed)
 	
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:

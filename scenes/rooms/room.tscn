@@ -23,6 +23,7 @@ texture = ExtResource("2_nmb2f")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2e33a")
+1:0/next_alternative_id = 2
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -928,13 +929,12 @@ sources/2 = SubResource("TileSetAtlasSource_btx2n")
 [node name="Room" type="Node2D"]
 script = ExtResource("1_fc1yq")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="TileMap" type="TileMap" parent="NavigationAgent2D"]
+[node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5o8os")
 format = 2
 
-[node name="TileMap2" type="TileMap" parent="NavigationAgent2D"]
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_5o8os")
 format = 2
 
 [node name="Entrance" type="Node2D" parent="."]
