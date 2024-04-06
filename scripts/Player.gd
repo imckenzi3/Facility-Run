@@ -49,7 +49,6 @@ func _physics_process(_delta: float) -> void:
 		
 	#check if attack is pressed and the attack animation is not playing
 	if Input.is_action_just_pressed("ui_attack") and not shovel_animation_player.is_playing():
-		print("Player attacked")
 		shovel_animation_player.play("attack")
 
 func player_movement():
@@ -62,6 +61,7 @@ func input() -> Vector2:
 	#input_dir.x = Input.get_axis("ui_left", "ui_right")
 	#input_dir = input_dir.normalized()
 	
+	#moveement
 	input_dir = Vector2.ZERO
 	input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")

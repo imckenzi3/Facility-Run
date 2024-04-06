@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_mujna"]
 [ext_resource type="Texture2D" uid="uid://crrypmk57spm" path="res://assets/ui/progress bar.png" id="2_nng7e"]
 [ext_resource type="PackedScene" uid="uid://bbqprigllt4hc" path="res://characters/player/player.tscn" id="2_ubo8u"]
-[ext_resource type="PackedScene" uid="uid://5grop2vcjsl6" path="res://scenes/rooms/room_0.tscn" id="4_uwtgh"]
+[ext_resource type="PackedScene" uid="uid://dfjeri6lncbut" path="res://scenes/rooms/room_1.tscn" id="4_h3evr"]
 
 [sub_resource type="GDScript" id="GDScript_umt1g"]
 script/source = "extends Node2D
@@ -39,10 +39,10 @@ tint_progress = Color(0, 0.811765, 0.286275, 1)
 [node name="Rooms" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
-[node name="Room0" parent="Rooms" instance=ExtResource("4_uwtgh")]
+[node name="Room" parent="Rooms" instance=ExtResource("4_h3evr")]
 
 [node name="Player" parent="." instance=ExtResource("2_ubo8u")]
 z_index = 1
-position = Vector2(37, 81)
+position = Vector2(190, 240)
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]

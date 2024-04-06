@@ -10,7 +10,7 @@ var move_direction: Vector2 = Vector2.ZERO
 var veloctiy: Vector2 = Vector2.ZERO
 
 #jump - no longer needed at this moment
-const speed = 55
+const speed = 65
 #const jump_power = -650 
 
 const friction = 60 #friction

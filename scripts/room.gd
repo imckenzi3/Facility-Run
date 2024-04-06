@@ -34,12 +34,11 @@ func _close_entrance() -> void:
 #second 0 is source id  it's your source tilemap index
 #ast one is cord of tile that you want to putdown, u can see what tile you want by hover over that tile in your 
 #tilemap(it's called AtlasCordinates)
-		tilemap.set_cell(0,tilemap.local_to_map(entry_position.position),1, Vector2i.ZERO) #causing error msg
-		tilemap.set_cell(0,tilemap.local_to_map(entry_position.position) + Vector2i.DOWN, 2, Vector2i.ZERO)
-		#older
-		#tilemap.set_cell(tilemap.world_to_map(entry_position.global_position), 1)
-		#tilemap.set_cell(tilemap.world_to_map(entry_position.global_position) + Vector2.DOWN, 2)
 
+		tilemap.set_cell(0,tilemap.local_to_map(entry_position.position), 0, Vector2i(2,7)) #sets wall top tile
+		tilemap.set_cell(0,tilemap.local_to_map(entry_position.position) + Vector2i.DOWN,0, Vector2i(6,4)) #sets wall below top tile
+		#^^^^^^^^^^^^^ player wont go through gets stuck on these walls for somereason
+	
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_position_container.get_children():
 		var enemy: CharacterBody2D = ENEMY_SCENES.FLYING_CREATURE.instantiate()

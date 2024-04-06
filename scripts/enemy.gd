@@ -15,7 +15,7 @@ class_name Enemy
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
 ##tracking speed
-const trackingSpeed = 55
+const trackingSpeed = 35
 
 func _ready() -> void:
 	var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed")) #if I know god knows
