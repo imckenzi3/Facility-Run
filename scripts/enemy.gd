@@ -3,7 +3,7 @@
 extends Character #Character ref
 class_name Enemy
 
-#have to call "NavigationAgent2D/Player" to locate the player for enemy navigation
+
 @onready var player: CharacterBody2D = get_tree().current_scene.get_node("Player") #ref to player node
 
 @onready var path_timer: Timer = get_node("PathTimer") #ref to Pathtimer node
@@ -22,6 +22,7 @@ func _ready() -> void:
 
 #needs to be float?? NO IT DOES NOT need to be float
 #fun chase(delta: float) -> void:
+#made a float anways idk works now
 func chase(_delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized() #simple track player
 	velocity = dir * trackingSpeed #simpole velocity
@@ -29,6 +30,12 @@ func chase(_delta: float) -> void:
 	#moves enemy towards player
 	move_and_slide() #move player func
 	
+	if dir.x > 0 and animated_sprite.flip_h:
+		animated_sprite.flip_h = false
+	elif dir.x < 0 and not animated_sprite.flip_h:
+		animated_sprite.flip_h = true
+	
+	#does not work idk what is this for even
 	#is enemy facing player
 	#if not navigation_agent.is_target_reached():
 		#var vector_to_next_point: Vector2 = navigation_agent.get_next_path_position() - global_position

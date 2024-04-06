@@ -5,7 +5,7 @@ func _init() -> void:
 	_add_state("move")
 	_add_state("hurt")
 	_add_state("dead")
-
+	
 func _ready() -> void:
 	set_state(states.idle)
 
@@ -26,7 +26,6 @@ func _get_transition() -> int:
 		states.hurt:
 			if not animation_player.is_playing():
 				return states.idle
-		
 	return -1
 
 

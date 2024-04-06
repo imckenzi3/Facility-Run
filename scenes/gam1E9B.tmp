@@ -44,5 +44,3 @@ debug_enabled = true
 [node name="Player" parent="." instance=ExtResource("2_ubo8u")]
 z_index = 1
 position = Vector2(37, 81)
-
-[connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]

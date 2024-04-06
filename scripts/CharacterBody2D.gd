@@ -4,7 +4,7 @@ class_name Character
 #speed & jump for player
 #less speed more jump = better feeling
 const speed = 55
-const jump_power = -650
+const jump_power = -650 
 
 #speed for enemy
 @export var max_speed: int = 100
@@ -21,10 +21,6 @@ const gravity = 35
 const max_jumps = 2
 var current_jumps = 1
 
-##shovel - ref to node - enemies cant have main weapon on all enemys so we have to call in Player script
-#@onready var shovel: Node2D = get_node("Shovel")
-#@onready var shovel_animation_player: AnimationPlayer = shovel.get_node("ShovelAnimationPlayer")
-
 #stateMachine
 @onready var state_machine: Node = get_node("FiniteStateMachine")
 
@@ -40,12 +36,12 @@ var move_direction: Vector2 = Vector2.ZERO
 
 #loop over and over
 func _physics_process(_delta):
+	
 	velocity = lerp(velocity, Vector2.ZERO, FRICTION)
-		
 	#player_movement() # cant here call will move enemies
 	
 	#jump() # cant here call jump here - no gravity
-	
+
 	
 func accelerate(direction):
 	velocity = velocity.move_toward(speed * direction, acc)
