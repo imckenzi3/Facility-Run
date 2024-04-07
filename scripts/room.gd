@@ -36,7 +36,7 @@ func _close_entrance() -> void:
 #tilemap(it's called AtlasCordinates)
 
 		tilemap.set_cell(0,tilemap.local_to_map(entry_position.position), 0, Vector2i(2,7)) #sets wall top tile
-		tilemap.set_cell(0,tilemap.local_to_map(entry_position.position) + Vector2i.DOWN,0, Vector2i(6,4)) #sets wall below top tile
+		#tilemap.set_cell(0,tilemap.local_to_map(entry_position.position) + Vector2i.DOWN,0, Vector2i(6,4)) #sets wall below top tile
 		#^^^^^^^^^^^^^ player wont go through gets stuck on these walls for somereason
 	
 func _spawn_enemies() -> void:

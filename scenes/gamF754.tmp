@@ -34,6 +34,7 @@ tint_progress = Color(0, 0.811765, 0.286275, 1)
 [node name="Rooms" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 script = ExtResource("4_k14fd")
+num_levels = null
 
 [node name="Player" parent="." instance=ExtResource("2_ubo8u")]
 z_index = 1
