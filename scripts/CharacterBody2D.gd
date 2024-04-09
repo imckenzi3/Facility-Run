@@ -3,7 +3,7 @@ class_name Character
 
 #player movement
 const FRICTION: float = 0.15 
-const acc: int = 40 #acceleration
+@export var acc: int = 40 #acceleration
 @export var max_speed: int = 100 #max_speed
 
 var move_direction: Vector2 = Vector2.ZERO
@@ -43,17 +43,17 @@ func move() -> void:
 	
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
-	self.hp -= dam
-	
-	#if after taking damage the hp is greater than 0
-	#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
-	#!!!knock back doesnt work - fix later if we want it
-	if hp > 0:
-		state_machine.set_state(state_machine.states.hurt)
-		velocity += dir * force
-	else:
-		state_machine.set_state(state_machine.states.dead)
-		velocity += dir * force * 2
+	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
+		self.hp -= dam
+		#if after taking damage the hp is greater than 0
+		#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
+		#!!!knock back doesnt work - fix later if we want it
+		if hp > 0:
+			state_machine.set_state(state_machine.states.hurt)
+			velocity += dir * force
+		else:
+			state_machine.set_state(state_machine.states.dead)
+			velocity += dir * force * 2
 		
 #called every time we modify the value of the hp variable
 func set_hp(new_hp: int) -> void:

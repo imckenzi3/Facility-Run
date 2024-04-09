@@ -345,3 +345,8 @@ script = ExtResource("3_8xy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_41xiw")
+
+[node name="NavigationAgent2D" parent="." index="6"]
+debug_enabled = true
+
+[connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

@@ -18,7 +18,8 @@ func _ready() -> void:
 func chase() -> void:
 	if not nav_agent.is_target_reached():
 		var vector_to_next_point: Vector2 = nav_agent.get_next_path_position() - global_position
-		move_direction = vector_to_next_point * trackingSpeed
+		move_direction = vector_to_next_point 
+		#move_direction = vector_to_next_point * trackingSpeed
 			
 		#change sprite based on mouse location
 		if vector_to_next_point.x > 0 and animated_sprite.flip_h:
@@ -36,5 +37,6 @@ func _on_path_timer_timeout() -> void:
 		move_direction = Vector2.ZERO
 
 func _get_path_to_player() -> void:
-	nav_agent.target_position = player.global_position
-
+	nav_agent.target_position = player.position 
+	
+	
