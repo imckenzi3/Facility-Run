@@ -10,11 +10,10 @@ var move_direction: Vector2 = Vector2.ZERO
 var veloctiy: Vector2 = Vector2.ZERO
 
 #jump - no longer needed at this moment
-const speed = 65
+const speed = 45
 #const jump_power = -650 
 
 const friction = 60 #friction
-const gravity = 35 #gravity
 
 #jumping
 const max_jumps = 2
@@ -39,6 +38,8 @@ func _physics_process(_delta: float) -> void:
 func move() -> void:
 	move_direction = move_direction.normalized()
 	velocity += move_direction * acc
+	velocity = velocity.limit_length(max_speed)
+
 	
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:

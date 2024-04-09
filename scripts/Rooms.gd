@@ -14,6 +14,7 @@ const SPAWN_ROOMS: Array = [
 const INTERMEDIATE_ROOMS: Array = [
 	preload("res://scenes/rooms/room1.tscn"),
 	preload("res://scenes/rooms/room2.tscn"),
+	preload("res://scenes/rooms/easy rooms/easyroom1.tscn")
 	# add more rooms here
 	]
 

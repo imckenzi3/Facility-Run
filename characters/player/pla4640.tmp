@@ -456,6 +456,7 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_pgprf")
+max_speed = null
 hp = 4
 
 [node name="FiniteStateMachine" type="Node" parent="."]
@@ -506,5 +507,13 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_wkb80")
 }
+
+[node name="LadderCheck" type="RayCast2D" parent="."]
+position = Vector2(0, -4)
+target_position = Vector2(0, 13)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Camera2D" type="Camera2D" parent="."]

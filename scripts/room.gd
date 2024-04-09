@@ -4,7 +4,8 @@ class_name DungeonRoom
 const SPAWN_EXPLOSION_SCENE: PackedScene = preload("res://characters/enemies/spawn_explosion.tscn")
 
 const ENEMY_SCENES: Dictionary = {
-	"FLYING_CREATURE": preload("res://characters/enemies/flying enemies/flyingMonkey.tscn")
+	"FLYING_CREATURE": preload("res://characters/enemies/flying enemies/flyingMonkey.tscn"),
+	"ROBOT": preload("res://characters/enemies/ranged enemies/robot.tscn")
 }
 
 var num_enemies: int
@@ -37,11 +38,11 @@ func _close_entrance() -> void:
 
 		tilemap.set_cell(0,tilemap.local_to_map(entry_position.position), 0, Vector2i(2,7)) #sets wall top tile
 		#tilemap.set_cell(0,tilemap.local_to_map(entry_position.position) + Vector2i.DOWN,0, Vector2i(6,4)) #sets wall below top tile
-		#^^^^^^^^^^^^^ player wont go through gets stuck on these walls for somereason
+
 	
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_position_container.get_children():
-		var enemy: CharacterBody2D = ENEMY_SCENES.FLYING_CREATURE.instantiate()
+		var enemy: CharacterBody2D = ENEMY_SCENES.ROBOT.instantiate()
 		#var __ = enemy.connect("tree_exited", self, "_on_enemy_killed") #wont work
 		var __ = enemy.connect("tree_exited", self._on_enemy_killed)
 		enemy.position = enemy_position.position

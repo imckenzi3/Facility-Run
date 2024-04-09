@@ -61,7 +61,7 @@ func input() -> Vector2:
 	#input_dir.x = Input.get_axis("ui_left", "ui_right")
 	#input_dir = input_dir.normalized()
 	
-	#moveement
+	#movement
 	input_dir = Vector2.ZERO
 	input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -79,6 +79,13 @@ func get_input() -> void:
 		move_direction += Vector2.RIGHT
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP
+		
+#move camera in the main scene to player position, make current and deactivate the real cam
+func switch_camera() -> void:
+	var main_scene_camera: Camera2D = get_parent().get_node("Camera2D")
+	main_scene_camera.position = position
+	main_scene_camera.current = true
+	get_node("Camera2D").current = false
 
 #no longer needed if player not jumping
 #func jump():
