@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cckg0qxbi7ak2"]
+
+[ext_resource type="Script" path="res://scripts/throwable_thunder.gd" id="1_q7n5l"]
+[ext_resource type="Texture2D" uid="uid://dimlgun28b6cm" path="res://assets/characters/enemies/robot_thunder.png" id="2_rlivv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x84ax"]
+radius = 2.12132
+height = 15.5564
+
+[node name="ThrowableThunder" type="Area2D"]
+z_index = 1
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_q7n5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_x84ax")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rlivv")
+
+[connection signal="body_exited" from="." to="." method="_on_ThrowableThunder_body_exited"]

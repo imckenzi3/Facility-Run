@@ -30,6 +30,7 @@ func _on_body_exited(_body: Node2D) -> void:
 	body_inside = false
 	timer.stop()
 
+#normal knock back
 func _collide(body: Node2D) -> void:
 	if body == null or not body.has_method("take_damage"):
 		queue_free()
