@@ -42,7 +42,14 @@ func _close_entrance() -> void:
 	
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_position_container.get_children():
-		var enemy: CharacterBody2D = ENEMY_SCENES.ROBOT.instantiate()
+		var enemy: CharacterBody2D 
+
+		#pick random enemy to spawn
+		if randi() % 2 ==0:
+			enemy = ENEMY_SCENES.FLYING_CREATURE.instantiate()
+		else:
+			enemy = ENEMY_SCENES.ROBOT.instantiate()
+			
 		#var __ = enemy.connect("tree_exited", self, "_on_enemy_killed") #wont work
 		var __ = enemy.connect("tree_exited", self._on_enemy_killed)
 		enemy.position = enemy_position.position

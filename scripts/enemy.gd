@@ -12,8 +12,8 @@ class_name Enemy
 #tracking speed
 const trackingSpeed = 25
 
-func _ready() -> void:
-	var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed")) #if I know god knows
+#func _ready() -> void:
+	#var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed")) #if I know god knows
 
 func chase() -> void:
 	if not nav_agent.is_target_reached():
