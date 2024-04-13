@@ -14,7 +14,6 @@ const trackingSpeed = 25
 
 #enemy must have min max health so we will do 100/5 something like that idk
 
-
 #func _ready() -> void:
 	##var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed")) #if I know god knows
 		
@@ -46,9 +45,11 @@ func _get_path_to_player() -> void:
 
 ##sets bar hp tp enemy hp
 func set_hp(new_hp: int)  -> void:
-	$HealthBar.set_bar_value(hp*1.0)
-	
 	hp = new_hp
 	emit_signal("hp_changed", new_hp)
+	
+	$HealthBar.set_bar_value(new_hp*1.0)
+	
+	
 	
 
