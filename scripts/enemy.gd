@@ -12,10 +12,12 @@ class_name Enemy
 #tracking speed
 const trackingSpeed = 25
 
+#enemy must have min max health so we will do 100/5 something like that idk
+
 
 #func _ready() -> void:
-	#var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed")) #if I know god knows
-	
+	##var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed")) #if I know god knows
+		
 func chase() -> void:
 	if not nav_agent.is_target_reached():
 		var vector_to_next_point: Vector2 = nav_agent.get_next_path_position() - global_position
@@ -40,6 +42,13 @@ func _on_path_timer_timeout() -> void:
 #gets path to player
 func _get_path_to_player() -> void:
 	nav_agent.target_position = player.position 
+	
 
-func _update_enemy_health() -> void:
-	pass
+##sets bar hp tp enemy hp
+func set_hp(new_hp: int)  -> void:
+	$HealthBar.set_bar_value(hp*1.0)
+	
+	hp = new_hp
+	emit_signal("hp_changed", new_hp)
+	
+

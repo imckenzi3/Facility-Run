@@ -32,6 +32,7 @@ signal hp_changed(new_hp)
 #flying
 @export var flying: bool = false
 
+
 #loop over and over
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -63,12 +64,6 @@ func set_hp(new_hp: int) -> void:
 	hp = new_hp
 	emit_signal("hp_changed", new_hp)
 	
-	#update the hp variable and emit the isgnal hp_changed with new_hp as parameter.
-	
-	#update health bars
-	#$HealthBar.set_bar_value(hp * 1.0/new_hp * 100)
-	#HealthBar.hp = new_hp
-
 func accelerate(direction):
 	velocity = velocity.move_toward(speed * direction, acc)
 	

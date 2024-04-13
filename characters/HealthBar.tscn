@@ -19,7 +19,7 @@ offset_right = 11.0
 offset_bottom = 2.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ghmor")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b33ul")
-value = 100.0
+max_value = 2.0
 show_percentage = false
 script = ExtResource("1_7qcre")
 
@@ -33,8 +33,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_y0rr2")
 value = 100.0
 show_percentage = false
 
-[node name="HealthTimer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

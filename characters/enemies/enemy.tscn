@@ -27,4 +27,5 @@ autostart = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_mvbwv")]
 
+[connection signal="hp_changed" from="." to="HealthBar" method="_on_enemy_hp_changed"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]

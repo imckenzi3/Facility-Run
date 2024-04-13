@@ -1,30 +1,37 @@
 extends ProgressBar
 
-@onready var timer: Timer = get_node("HealthTimer") #ref to navigation node
-@onready var health_bar: ProgressBar = get_node("HealthBar") #ref to navigation node
+@onready var parent: CharacterBody2D = get_parent() #grabs nod
 
-@onready var parentHp: Character = get_parent() # ref to hp
+@onready var health_bar: ProgressBar = parent.get_node("HealthBar")
+@onready var timer: Timer = parent.get_node("Timer")
 
-#var hp already called in character from enemy
-func _set_health(new_health):
-	var prev_health = 	parentHp.hp
-	parentHp.hp = min(max_value, new_health)
-	value = parentHp.hp
-	
-	if parentHp.hp <= 0:
-		queue_free()
-		
-	if parentHp.hp < prev_health:
-		timer.start()
+func _ready():
+	set_process(false)
+
+func set_bar_value(value):
+	self.value = value
+	#set_process(false)
+	$Timer.stop()
+	$Timer.start(0)
+	if(value > $ProgressBar2.value):
+		$ProgressBar2.value = value
+
+func _process(delta):
+	$ProgressBar2.value = lerp($ProgressBar2.value, value, 0.1)
+	if($ProgressBar2.value - value <= 0.5):
+		$ProgressBar2.value = value
+		set_process(false)
+	#or
+	#$ProgressBar2.value -= 0.8
+	#if($ProgressBar2.value <= value):
+	#	$ProgressBar2.value = value
+	#	set_process(false
+
+func _on_Button_pressed():
+	if(value <= 0):
+		set_bar_value(100)
 	else:
-		health_bar.value = parentHp.hp
-	
-func init_health(_health):
-	parentHp.hp = _health
-	max_value = parentHp.hp
-	value = parentHp.hp
-	health_bar.max_value = parentHp.hp
-	health_bar.value = parentHp.hp
+		set_bar_value(value - 10)
 
-func _on_health_timer_timeout():
-	health_bar.value = parentHp.hp
+func _on_timer_timeout():
+	set_process(true)
