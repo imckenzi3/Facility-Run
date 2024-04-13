@@ -29,6 +29,9 @@ signal hp_changed(new_hp)
 #animated_Sprite
 @onready var animated_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
+#flying
+@export var flying: bool = false
+
 #loop over and over
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -59,11 +62,15 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 func set_hp(new_hp: int) -> void:
 	hp = new_hp
 	emit_signal("hp_changed", new_hp)
+	
 	#update the hp variable and emit the isgnal hp_changed with new_hp as parameter.
+	
+	#update health bars
+	#$HealthBar.set_bar_value(hp * 1.0/new_hp * 100)
+	#HealthBar.hp = new_hp
 
 func accelerate(direction):
 	velocity = velocity.move_toward(speed * direction, acc)
 	
 func add_friction():
 	velocity = velocity.move_toward(Vector2.ZERO, friction)
-

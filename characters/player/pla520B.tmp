@@ -475,6 +475,8 @@ offset = Vector2(5, 4)
 collision_layer = 0
 collision_mask = 12
 script = ExtResource("6_whl5a")
+damage = null
+knockback_force = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shovel/Node2D/Sprite2D/Hitbox"]
 position = Vector2(5, 4)
@@ -501,5 +503,3 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("9_0hb0s")
-
-[connection signal="area_entered" from="Shovel/Node2D/Sprite2D/Hitbox" to="Shovel/Node2D/Sprite2D/Hitbox" method="_on_area_entered"]

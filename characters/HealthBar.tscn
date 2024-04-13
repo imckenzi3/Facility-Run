@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3m6t7umfisw2"]
+
+[ext_resource type="Script" path="res://scripts/ProgressBar.gd" id="1_7qcre"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghmor"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b33ul"]
+bg_color = Color(0.552941, 0, 0.0235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_371bo"]
+bg_color = Color(0.384314, 0.384314, 0.384314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0rr2"]
+bg_color = Color(0.858824, 0.694118, 0, 1)
+
+[node name="HealthBar" type="ProgressBar"]
+offset_right = 11.0
+offset_bottom = 2.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ghmor")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b33ul")
+value = 100.0
+show_percentage = false
+script = ExtResource("1_7qcre")
+
+[node name="ProgressBar2" type="ProgressBar" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 11.0
+offset_bottom = 2.0
+theme_override_styles/background = SubResource("StyleBoxFlat_371bo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y0rr2")
+value = 100.0
+show_percentage = false
+
+[node name="HealthTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]

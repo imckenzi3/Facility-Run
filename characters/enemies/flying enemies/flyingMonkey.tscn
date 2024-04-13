@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://7fw0vna7cqoj"]
+[gd_scene load_steps=31 format=3 uid="uid://7fw0vna7cqoj"]
 
 [ext_resource type="Script" path="res://characters/enemies/flying enemies/flyingMonkey.gd" id="1_krrjp"]
 [ext_resource type="Texture2D" uid="uid://c7xola47mbtpn" path="res://assets/characters/MankeyJungle_Idle_strip5.png" id="2_tvecr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ddwtko6uiogry" path="res://assets/effects/enemy_afterdead_explosion_anim_spritesheet.png" id="4_filqs"]
 [ext_resource type="Texture2D" uid="uid://dkohi33d6eaqw" path="res://assets/characters/MankeyJungle_Walk_strip6.png" id="4_jdh8j"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="6_g8pu8"]
+[ext_resource type="PackedScene" uid="uid://c3m6t7umfisw2" path="res://characters/HealthBar.tscn" id="7_2nugk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3rpe"]
 atlas = ExtResource("4_jdh8j")
@@ -310,6 +311,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_krrjp")
 max_speed = 35
+flying = true
 
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("2_u8kux")
@@ -340,5 +342,11 @@ wait_time = 0.5
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="HealthBar" parent="." instance=ExtResource("7_2nugk")]
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 6.0
+offset_bottom = -13.0
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]

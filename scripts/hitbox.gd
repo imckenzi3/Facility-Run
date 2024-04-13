@@ -36,3 +36,7 @@ func _collide(body: Node2D) -> void:
 		queue_free()
 	else:
 		body.take_damage(damage, knockback_direction, knockback_force)
+
+#breaks projectiles
+func _on_area_entered(area: Area2D) -> void:
+	area.queue_free()

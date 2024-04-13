@@ -357,5 +357,11 @@ one_shot = true
 
 [node name="AimRayCast2D" type="RayCast2D" parent="." index="8"]
 
+[node name="HealthBar" parent="." index="9"]
+offset_left = -5.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = -9.0
+
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

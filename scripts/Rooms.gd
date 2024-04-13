@@ -16,7 +16,8 @@ const INTERMEDIATE_ROOMS: Array = [
 	preload("res://scenes/rooms/room2.tscn"),
 	preload("res://scenes/rooms/room3.tscn"),
 	preload("res://scenes/rooms/room4.tscn"),
-	preload("res://scenes/rooms/room5.tscn")
+	preload("res://scenes/rooms/room5.tscn"),
+	preload("res://scenes/rooms/room6.tscn")
 	# add more rooms here
 	]
 

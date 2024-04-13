@@ -20,9 +20,9 @@ layer_0/tile_data = PackedInt32Array(131076, 393222, 4, 131080, 393222, 4, 13108
 [node name="Door" parent="Doors" index="0" instance=ExtResource("2_imrcs")]
 position = Vector2(112, 36)
 
+[node name="PlayerSpawnPos" type="Node2D" parent="." index="8"]
+position = Vector2(112, 112)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(112, 64)
 shape = SubResource("RectangleShape2D_y1onw")
-
-[node name="PlayerSpawnPos" type="Node2D" parent="." index="8"]
-position = Vector2(112, 112)

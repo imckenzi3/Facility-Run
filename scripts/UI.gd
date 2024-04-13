@@ -9,7 +9,7 @@ var max_hp: int = 4
 
 func _ready() -> void:
 	max_hp = player.hp
-	_update_health_bar(100)
+	_update_health_bar(100) 
 
 #animates health
 func _update_health_bar(new_value: int) -> void:

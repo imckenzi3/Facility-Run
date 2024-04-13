@@ -33,7 +33,6 @@ func _on_PathTimer_timeout() -> void:
 	else:
 		move_direction = Vector2.ZERO
 
-
 #move away from player
 func _get_path_to_move_away_from_player() -> void:
 	var dir: Vector2 = (global_position - player.position).normalized()

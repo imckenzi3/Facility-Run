@@ -26,5 +26,13 @@ autostart = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="HealthBar" parent="." instance=ExtResource("3_mvbwv")]
+offset_left = -5.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = -9.0
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]

@@ -12,9 +12,10 @@ class_name Enemy
 #tracking speed
 const trackingSpeed = 25
 
+
 #func _ready() -> void:
 	#var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed")) #if I know god knows
-
+	
 func chase() -> void:
 	if not nav_agent.is_target_reached():
 		var vector_to_next_point: Vector2 = nav_agent.get_next_path_position() - global_position
@@ -35,8 +36,10 @@ func _on_path_timer_timeout() -> void:
 	else:
 		path_timer.stop()
 		move_direction = Vector2.ZERO
-
+		
+#gets path to player
 func _get_path_to_player() -> void:
 	nav_agent.target_position = player.position 
-	
-	
+
+func _update_enemy_health() -> void:
+	pass
