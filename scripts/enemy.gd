@@ -48,8 +48,6 @@ func set_hp(new_hp: int)  -> void:
 	hp = new_hp
 	emit_signal("hp_changed", new_hp)
 	
-	$HealthBar.set_bar_value(new_hp*1.0)
 	
-	
-	
+	$HealthBar.set_bar_value(new_hp*1.0) #sets enemy bar hp based on enemy hp
 

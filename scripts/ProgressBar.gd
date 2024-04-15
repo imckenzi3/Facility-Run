@@ -1,5 +1,7 @@
 extends ProgressBar
 
+#sets enemybar hp based on hp
+
 func _ready():
 	set_process(false)
 
