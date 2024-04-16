@@ -1,11 +1,16 @@
-[gd_scene load_steps=32 format=3 uid="uid://biy65cmg70kfy"]
+[gd_scene load_steps=34 format=3 uid="uid://biy65cmg70kfy"]
 
 [ext_resource type="PackedScene" uid="uid://1vmcl3p6n5ac" path="res://characters/enemies/enemy.tscn" id="1_cxufv"]
+[ext_resource type="Shader" path="res://characters/player/shadow.gdshader" id="2_75l30"]
 [ext_resource type="Texture2D" uid="uid://ddwtko6uiogry" path="res://assets/effects/enemy_afterdead_explosion_anim_spritesheet.png" id="2_guh7c"]
 [ext_resource type="Script" path="res://scripts/robot.gd" id="2_ry3gy"]
 [ext_resource type="Texture2D" uid="uid://csmpnqsny7q3r" path="res://assets/tilesets/full spritesheet.png" id="2_x32nn"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_8xy0v"]
 [ext_resource type="Script" path="res://scripts/RobotFSM.gd" id="3_m058k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kf3km"]
+shader = ExtResource("2_75l30")
+shader_parameter/hit_opacity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dkiib"]
 atlas = ExtResource("2_guh7c")
@@ -241,10 +246,34 @@ tracks/2/path = NodePath("AnimatedSprite2D:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Color(1, 0.12549, 0.117647, 1), Color(1, 1, 1, 1), Color(1, 0.12549, 0.117647, 1), Color(1, 1, 1, 1)]
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:material:shader")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_75l30")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:material:shader_parameter/hit_opacity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_s83l5"]
@@ -326,6 +355,9 @@ max_speed = 75
 script = ExtResource("3_m058k")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_kf3km")
 sprite_frames = SubResource("SpriteFrames_mqcf6")
 animation = &"idle"
 
@@ -362,6 +394,9 @@ offset_left = -6.0
 offset_top = -12.0
 offset_right = 5.0
 offset_bottom = -10.0
+
+[node name="DamageNumbersOrigin" parent="." index="10"]
+position = Vector2(0, -8)
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -14,6 +14,10 @@ config/name="space_game"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
+[autoload]
+
+DamageNumbers="*res://scripts/DamageNumbers.gd"
+
 [display]
 
 window/size/viewport_width=480

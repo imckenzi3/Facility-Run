@@ -9,9 +9,13 @@ class_name Enemy
 #@onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @onready var nav_agent: NavigationAgent2D = get_node("NavigationAgent2D") #ref to navigation node
 
+#grab damage numbers from scene
+@onready var damage_numbers_origin: Node2D = get_node("DamageNumbersOrigin") #ref to navigation node
+
 #tracking speed
 const trackingSpeed = 25
 
+#@onready var damage_number_origin: Node2D = get_node("DamageNumbersOrigin")
 #enemy must have min max health so we will do 100/5 something like that idk
 
 #func _ready() -> void:
@@ -50,4 +54,6 @@ func set_hp(new_hp: int)  -> void:
 	
 	
 	$HealthBar.set_bar_value(new_hp*1.0) #sets enemy bar hp based on enemy hp
-
+	#var damage = hitbox.damage
+	#var is_critial = hitbox.crit_change > randf ()
+	#DamageNumbers.display_number(damage, damage_numbers_origin.global_position, is_critial)

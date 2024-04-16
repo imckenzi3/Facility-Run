@@ -1,12 +1,18 @@
-[gd_scene load_steps=31 format=3 uid="uid://7fw0vna7cqoj"]
+[gd_scene load_steps=33 format=3 uid="uid://7fw0vna7cqoj"]
 
 [ext_resource type="Script" path="res://characters/enemies/flying enemies/flyingMonkey.gd" id="1_krrjp"]
 [ext_resource type="Texture2D" uid="uid://c7xola47mbtpn" path="res://assets/characters/MankeyJungle_Idle_strip5.png" id="2_tvecr"]
 [ext_resource type="Script" path="res://scripts/FlyingCreatureFSM.gd" id="2_u8kux"]
+[ext_resource type="Shader" path="res://characters/player/2DOutlineShader.gdshader" id="3_82pb0"]
 [ext_resource type="Texture2D" uid="uid://ddwtko6uiogry" path="res://assets/effects/enemy_afterdead_explosion_anim_spritesheet.png" id="4_filqs"]
 [ext_resource type="Texture2D" uid="uid://dkohi33d6eaqw" path="res://assets/characters/MankeyJungle_Walk_strip6.png" id="4_jdh8j"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="6_g8pu8"]
 [ext_resource type="PackedScene" uid="uid://c3m6t7umfisw2" path="res://characters/HealthBar.tscn" id="7_2nugk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkkj3"]
+shader = ExtResource("3_82pb0")
+shader_parameter/outline_color = Color(0.290196, 0.611765, 0, 1)
+shader_parameter/outline_size = 0.265
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3rpe"]
 atlas = ExtResource("4_jdh8j")
@@ -306,7 +312,7 @@ _data = {
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 5
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_krrjp")
@@ -317,6 +323,8 @@ flying = true
 script = ExtResource("2_u8kux")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkkj3")
 sprite_frames = SubResource("SpriteFrames_urdgv")
 animation = &"chase"
 
@@ -348,5 +356,8 @@ offset_left = -5.0
 offset_top = -15.0
 offset_right = 6.0
 offset_bottom = -13.0
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(0, -8)
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]

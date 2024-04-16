@@ -1,5 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://bbqprigllt4hc"]
+[gd_scene load_steps=37 format=3 uid="uid://bbqprigllt4hc"]
 
+[ext_resource type="Shader" path="res://characters/player/2DOutlineShader.gdshader" id="1_a1rla"]
 [ext_resource type="Shader" path="res://characters/player/shadow.gdshader" id="1_v1533"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2_pgprf"]
 [ext_resource type="Script" path="res://scripts/FiniteStateMachine.gd" id="2_q1q21"]
@@ -10,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://c4tjc1dffttra" path="res://weapons/weapon_crowbar.png" id="7_l6y8q"]
 [ext_resource type="Texture2D" uid="uid://b4f6usb3wr0av" path="res://assets/effects/Slash.png" id="8_20d0f"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="9_0hb0s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dsiqm"]
+shader = ExtResource("1_a1rla")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 0.011
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gxwk1"]
 shader = ExtResource("1_v1533")
@@ -445,6 +451,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_dsiqm")
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_pgprf")
@@ -454,7 +461,8 @@ hp = 4
 script = ExtResource("2_q1q21")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.12549, 0.117647, 1)
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
 material = SubResource("ShaderMaterial_gxwk1")
 sprite_frames = SubResource("SpriteFrames_4tuar")
 animation = &"idle"
@@ -469,6 +477,7 @@ shape = SubResource("CircleShape2D_6c2d5")
 rotation = -1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="Shovel/Node2D"]
+texture_filter = 1
 position = Vector2(7, 3)
 texture = ExtResource("7_l6y8q")
 offset = Vector2(5, 4)
@@ -503,5 +512,8 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("9_0hb0s")
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(0, -10)
 
 [connection signal="area_entered" from="Shovel/Node2D/Sprite2D/Hitbox" to="Shovel/Node2D/Sprite2D/Hitbox" method="_on_area_entered"]

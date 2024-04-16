@@ -32,6 +32,7 @@ signal hp_changed(new_hp)
 #flying
 @export var flying: bool = false
 
+@onready var damage_number_origin: Node2D = get_node("DamageNumbersOrigin")
 
 #loop over and over
 func _physics_process(_delta: float) -> void:
@@ -49,6 +50,11 @@ func move() -> void:
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
 		self.hp -= dam
+		
+		#display damage numbers
+		DamageNumbers.display_number(dam, damage_number_origin.global_position)
+		#var is_critical self.crit_chance > randf()
+		
 		#if after taking damage the hp is greater than 0
 		#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
 		#!!!knock back doesnt work - fix later if we want it
@@ -58,6 +64,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		else:
 			state_machine.set_state(state_machine.states.dead)
 			velocity += dir * force * 2
+	
 		
 #called every time we modify the value of the hp variable
 func set_hp(new_hp: int) -> void:

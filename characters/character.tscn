@@ -17,3 +17,5 @@ animation = &""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
