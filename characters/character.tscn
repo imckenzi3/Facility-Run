@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://busvdrve8cb8s"]
+[gd_scene load_steps=4 format=3 uid="uid://busvdrve8cb8s"]
 
 [ext_resource type="Script" path="res://scripts/characterBody2D.gd" id="1_6e2f0"]
+[ext_resource type="PackedScene" uid="uid://cmcrdwrsn4icv" path="res://weapons/deathParticle.tscn" id="2_7xsgs"]
 [ext_resource type="Script" path="res://scripts/FSM.gd" id="2_gyrcr"]
 
 [node name="Character" type="CharacterBody2D" groups=["Climber"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6e2f0")
+deathParticle = ExtResource("2_7xsgs")
 
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("2_gyrcr")

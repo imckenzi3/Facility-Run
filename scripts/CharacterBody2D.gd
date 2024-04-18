@@ -34,6 +34,8 @@ signal hp_changed(new_hp)
 
 @onready var damage_number_origin: Node2D = get_node("DamageNumbersOrigin")
 
+@export var deathParticle: PackedScene
+
 #loop over and over
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -58,13 +60,19 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		#if after taking damage the hp is greater than 0
 		#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
 		#!!!knock back doesnt work - fix later if we want it
+		
+		#player damaged here
 		if hp > 0:
 			state_machine.set_state(state_machine.states.hurt)
 			velocity += dir * force
+			#print("player hit")
 		else:
 			state_machine.set_state(state_machine.states.dead)
 			velocity += dir * force * 2
-	
+			
+			#player death here
+			#print("player died")
+			Kill()
 		
 #called every time we modify the value of the hp variable
 func set_hp(new_hp: int) -> void:
@@ -76,3 +84,13 @@ func accelerate(direction):
 	
 func add_friction():
 	velocity = velocity.move_toward(Vector2.ZERO, friction)
+
+#death particle
+func Kill():
+	var _particle = deathParticle.instantiate()
+	_particle.position = global_position
+	_particle.rotation = global_position
+	_particle.emiiting = true
+	get_tree().current_scene.add_child(_particle)
+	
+	queue_free()
