@@ -32,8 +32,10 @@ signal hp_changed(new_hp)
 #flying
 @export var flying: bool = false
 
+#damage numbers
 @onready var damage_number_origin: Node2D = get_node("DamageNumbersOrigin")
 
+#death particles in testing
 @export var deathParticle: PackedScene
 
 #loop over and over

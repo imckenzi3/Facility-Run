@@ -4,7 +4,9 @@ class_name Weapon
 
 @onready var animation_player: AnimationPlayer = get_node("ShovelAnimationPlayer")
 @onready var charge_particles: GPUParticles2D = get_node("Node2D/Sprite2D/ChargeParticles2D")
-@onready var hitxbox: Area2D = get_node("Node2D/Sprite2D/Hitbox")
+@onready var hitbox: Area2D = get_node("Node2D/Sprite2D/Hitbox")
+
+@export var rotation_offset: int = 0
 
 func get_input() -> void:
 		#check if attack is pressed and the attack animation is not playing
@@ -19,9 +21,11 @@ func get_input() -> void:
 func move(mouse_direction: Vector2) -> void:
 	if not animation_player.is_playing() or animation_player.current_animation == "charge":
 		#update the rotation of the shovel using the angle of the mouse direction
-		rotation = mouse_direction.angle()
+		rotation = rad_to_deg(mouse_direction.angle()) + rotation_offset
+		#	rotation = mouse_direction.angle()
+		#rad_to_deg(mouse_direction.angle()) + rotation_offset
 		#set the knockback direction of the hitbox with the mouse direction
-		hitxbox.knockback_direction = mouse_direction # doesnt even work - theres no knock back in dark souls anyawys
+		hitbox.knockback_direction = mouse_direction # doesnt even work - theres no knock back in dark souls anyawys
 			
 		if scale.y == 1 and mouse_direction.x < 0:
 			scale.y = -1

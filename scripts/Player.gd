@@ -1,6 +1,8 @@
 @icon("res://assets/characters/Test_Dummy/Test_Dummy_Right.png") #icon 
 extends Character
 
+enum {UP, DOWN} #weapon switch
+
 #Weapons
 var current_weapon: Node2D
 
@@ -37,13 +39,19 @@ func _physics_process(_delta: float) -> void:
 	
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()	#mouse direction
 
-	if mouse_direction.x > 0 and animated_sprite.flip_h:
+	#if mouse_direction.x > 0 and animated_sprite.flip_h:
+		#animated_sprite.flip_h = false
+	#elif mouse_direction.x < 0 and not animated_sprite.flip_h:
+		#animated_sprite.flip_h = true
+		
+	if input_dir.x > 0 and animated_sprite.flip_h:
 		animated_sprite.flip_h = false
-	elif mouse_direction.x < 0 and not animated_sprite.flip_h:
+	elif input_dir.x < 0 and not animated_sprite.flip_h:
 		animated_sprite.flip_h = true
 	
 	#current_weapon.move(mouse_direction)
 	
+	#current_weapon.move(mouse_direction)
 	##update the rotation of the shovel using the angle of the mouse direction
 	#shovel.rotation = mouse_direction.angle()
 	##set the knockback direction of the hitbox with the mouse direction
@@ -53,7 +61,7 @@ func _physics_process(_delta: float) -> void:
 		#shovel.scale.y = -1
 	#elif shovel.scale.y == -1 and mouse_direction.x > 0:
 		#shovel.scale.y = 1
-	
+	#
 	#check if attack is pressed and the attack animation is not playing
 	#if Input.is_action_just_pressed("ui_attack") and not shovel_animation_player.is_playing():
 		#shovel_animation_player.play("charge")
@@ -80,9 +88,9 @@ func input() -> Vector2:
 	input_dir = Vector2.ZERO
 	input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
-	return input_dir
 	
+	return input_dir
+
 func get_input() -> void:    
 	move_direction = Vector2.ZERO
 		
@@ -94,16 +102,14 @@ func get_input() -> void:
 		move_direction += Vector2.RIGHT
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP
-		
+	
+	
 #move camera in the main scene to player position, make current and deactivate the real cam
 func switch_camera() -> void:
 	var main_scene_camera: Camera2D = get_parent().get_node("Camera2D")
 	main_scene_camera.position = position
 	main_scene_camera.current = true
 	get_node("Camera2D").current = false
-
-
-
 
 
 #no longer needed if player not jumping
