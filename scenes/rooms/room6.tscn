@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://o04knaquvav4"]
+[gd_scene load_steps=6 format=3 uid="uid://o04knaquvav4"]
 
 [ext_resource type="PackedScene" uid="uid://bdmxh02v1j1d6" path="res://scenes/rooms/room.tscn" id="1_pp0xs"]
 [ext_resource type="PackedScene" uid="uid://b53kkktu8jtnr" path="res://scenes/rooms/door.tscn" id="2_cn82r"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3x6n"]
 size = Vector2(32, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5p3jg"]
 
 [node name="Room" instance=ExtResource("1_pp0xs")]
 
@@ -42,3 +44,6 @@ position = Vector2(184, 104)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(224, 239)
 shape = SubResource("RectangleShape2D_w3x6n")
+
+[node name="LightOccluder2D" parent="." index="9"]
+occluder = SubResource("OccluderPolygon2D_5p3jg")

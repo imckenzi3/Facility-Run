@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmfdfu0x16hj2"]
+[gd_scene load_steps=5 format=3 uid="uid://cmfdfu0x16hj2"]
 
 [ext_resource type="PackedScene" uid="uid://bdmxh02v1j1d6" path="res://scenes/rooms/room.tscn" id="1_yphp7"]
 [ext_resource type="PackedScene" uid="uid://b53kkktu8jtnr" path="res://scenes/rooms/door.tscn" id="2_siso5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5cq7"]
 size = Vector2(32, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w7x34"]
+polygon = PackedVector2Array(132, 256, 132, 253, 131, 253, 131, 249, 4, 249, 4, 205, 67, 205, 67, 198, 68, 198, 68, 141, 67, 141, 67, 137, 20, 137, 20, 29, 188, 29, 188, 118, 189, 118, 189, 125, 236, 125, 236, 249, 157, 249, 157, 254, 156, 254, 156, 256, 160, 256, 160, 252, 240, 252, 240, 121, 192, 121, 192, 25, 16, 25, 16, 140, 64, 140, 64, 201, 0, 201, 0, 252, 128, 252, 128, 256)
 
 [node name="Room" instance=ExtResource("1_yphp7")]
 
@@ -38,3 +41,6 @@ position = Vector2(216, 152)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(144, 239)
 shape = SubResource("RectangleShape2D_s5cq7")
+
+[node name="LightOccluder2D" parent="." index="9"]
+occluder = SubResource("OccluderPolygon2D_w7x34")

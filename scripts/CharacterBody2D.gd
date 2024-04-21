@@ -72,7 +72,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 			
 			#player death here
 			#print("player died")
-			Kill()
+			#Kill()
 		
 #called every time we modify the value of the hp variable
 func set_hp(new_hp: int) -> void:
@@ -86,11 +86,11 @@ func add_friction():
 	velocity = velocity.move_toward(Vector2.ZERO, friction)
 
 #death particle
-func Kill():
-	var _particle = deathParticle.instantiate()
-	_particle.position = global_position
-	_particle.rotation = global_position
-	_particle.emiiting = true
-	get_tree().current_scene.add_child(_particle)
-	
-	queue_free()
+#func Kill():
+	#var _particle = deathParticle.instantiate()
+	#_particle.position = global_position
+	#_particle.rotation = global_position
+	#_particle.emitting = true
+	#get_tree().current_scene.add_child(_particle)
+	#
+	#queue_free()
