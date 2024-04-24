@@ -4,14 +4,15 @@ extends Character
 enum {UP, DOWN} #weapon switch
 
 #Weapons
-var current_weapon: Node2D
+#var current_weapon: Weapon
+@onready var current_weapon: Node2D = $Weapons/crowbar
 
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = get_node("Weapons")
 
 func ready() -> void:
 	current_weapon = weapons.get_child(0).get_texture()
-	
+
 #shovel - ref to node
 #@onready var shovel: Node2D = get_node("Shovel")
 #@onready var shovel_animation_player: AnimationPlayer = shovel.get_node("ShovelAnimationPlayer")
@@ -24,7 +25,7 @@ func ready() -> void:
 #@onready var ladderCheck = $LadderCheck
 #@export var climbing = false
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	#if is_on_ladder(): #works!!! yay
 		#print("on ladder")
 
@@ -36,7 +37,6 @@ func _physics_process(_delta: float) -> void:
 		add_friction()
 		
 	input() #player movement
-	
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()	#mouse direction
 
 	#if mouse_direction.x > 0 and animated_sprite.flip_h:
@@ -48,10 +48,9 @@ func _physics_process(_delta: float) -> void:
 		animated_sprite.flip_h = false
 	elif input_dir.x < 0 and not animated_sprite.flip_h:
 		animated_sprite.flip_h = true
+		
+	current_weapon.move(mouse_direction)
 	
-	#current_weapon.move(mouse_direction)
-	
-	#current_weapon.move(mouse_direction)
 	##update the rotation of the shovel using the angle of the mouse direction
 	#shovel.rotation = mouse_direction.angle()
 	##set the knockback direction of the hitbox with the mouse direction
@@ -90,7 +89,7 @@ func input() -> Vector2:
 	input_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	
 	return input_dir
-
+	
 func get_input() -> void:    
 	move_direction = Vector2.ZERO
 		
@@ -103,6 +102,27 @@ func get_input() -> void:
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP
 	
+	if not current_weapon.is_busy():
+		if Input.is_action_just_released("ui_previous_weapon"):_switch_weapon(UP)
+		elif Input.is_action_just_released("ui_next_weapon"):_switch_weapon(DOWN)
+		
+	current_weapon.get_input()
+
+#change weapons
+func _switch_weapon(direction: int) -> void:
+	var index: int = current_weapon.get_index()
+	if direction == UP:
+		index -= 1
+		if index < 0:
+			index = weapons.get_child_count() - 1
+	else:
+		index += 1
+		if index > weapons.get_child_count() - 1:
+			index = 0
+	
+	current_weapon.hide()
+	current_weapon = weapons.get_child(index)
+	current_weapon.show()
 	
 #move camera in the main scene to player position, make current and deactivate the real cam
 func switch_camera() -> void:

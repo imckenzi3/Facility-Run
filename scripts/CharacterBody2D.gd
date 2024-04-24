@@ -48,13 +48,12 @@ func move() -> void:
 	move_direction = move_direction.normalized()
 	velocity += move_direction * acc
 	velocity = velocity.limit_length(max_speed)
-
 	
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
 		self.hp -= dam
-		
+
 		#display damage numbers
 		DamageNumbers.display_number(dam, damage_number_origin.global_position)
 		#var is_critical self.crit_chance > randf()

@@ -1,4 +1,4 @@
-@icon("res://weapons/weapon_crowbar.png") #icon 
+@icon("res://weapons/hmag1n.png") #icon 
 extends Node2D
 class_name Weapon
 
@@ -7,7 +7,7 @@ class_name Weapon
 @onready var hitbox: Area2D = get_node("Node2D/Sprite2D/Hitbox")
 
 @export var rotation_offset: int = 0
-
+ 
 func get_input() -> void:
 		#check if attack is pressed and the attack animation is not playing
 	if Input.is_action_just_pressed("ui_attack") and not animation_player.is_playing():
@@ -17,11 +17,12 @@ func get_input() -> void:
 			animation_player.play("attack")
 		elif charge_particles.emitting:
 			animation_player.play("charge_attack")
-			
+
 func move(mouse_direction: Vector2) -> void:
 	if not animation_player.is_playing() or animation_player.current_animation == "charge":
 		#update the rotation of the shovel using the angle of the mouse direction
-		rotation = rad_to_deg(mouse_direction.angle()) + rotation_offset
+		#rotation = rad_to_deg(mouse_direction.angle()) + rotation_offset
+		rotation = mouse_direction.angle()
 		#	rotation = mouse_direction.angle()
 		#rad_to_deg(mouse_direction.angle()) + rotation_offset
 		#set the knockback direction of the hitbox with the mouse direction
@@ -39,3 +40,7 @@ func is_busy() -> bool:
 	if animation_player.is_playing() or charge_particles.emitting:
 		return true
 	return false
+
+func get_texture() -> Texture2D:
+	return get_node("Node2D/Sprite2D").texture
+

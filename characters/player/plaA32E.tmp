@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bbqprigllt4hc"]
+[gd_scene load_steps=32 format=3 uid="uid://bbqprigllt4hc"]
 
 [ext_resource type="Shader" path="res://characters/player/2DOutlineShader.gdshader" id="1_a1rla"]
 [ext_resource type="Shader" path="res://characters/player/shadow.gdshader" id="1_v1533"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bxq5m6nuq4ehm" path="res://assets/characters/Test_Dummy/Test_Dummy_Walk_Right.png" id="5_f1d21"]
 [ext_resource type="PackedScene" uid="uid://btu8nfu6xikpk" path="res://weapons/crowbar.tscn" id="8_e4581"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="9_0hb0s"]
-[ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="9_vl3a2"]
 [ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="10_e72ql"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dsiqm"]
@@ -317,7 +316,10 @@ material = SubResource("ShaderMaterial_dsiqm")
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_pgprf")
+acc = null
+max_speed = null
 hp = 4
+flying = null
 
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("2_q1q21")
@@ -344,9 +346,6 @@ position = Vector2(0, -10)
 [node name="Weapons" type="Node2D" parent="."]
 
 [node name="crowbar" parent="Weapons" instance=ExtResource("8_e4581")]
-
-[node name="weapon" parent="Weapons" instance=ExtResource("9_vl3a2")]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("9_0hb0s")
