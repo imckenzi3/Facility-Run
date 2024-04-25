@@ -3,13 +3,18 @@ extends Character
 
 enum {UP, DOWN} #weapon switch
 
+signal weapon_switched(prev_index, new_index)
+signal weapon_picked_up(weapon_texture)
+signal weapon_droped(index)
+
 #Weapons
-#var current_weapon: Weapon
+#var current_weapon: Weapon 
 @onready var current_weapon: Node2D = $Weapons/crowbar
 
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = get_node("Weapons")
 
+	
 func ready() -> void:
 	current_weapon = weapons.get_child(0).get_texture()
 
@@ -69,9 +74,6 @@ func _process(_delta: float) -> void:
 			#shovel_animation_player.play("attack")
 		#elif charge_particle.emitting:
 			#shovel_animation_player.play("charge_attack")
-
-func cancel_attack() -> void:
-	current_weapon.cancel_attack()
 	
 func player_movement():
 	move_and_slide()
@@ -101,15 +103,19 @@ func get_input() -> void:
 		move_direction += Vector2.RIGHT
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP
-	
-	if not current_weapon.is_busy():
-		if Input.is_action_just_released("ui_previous_weapon"):_switch_weapon(UP)
-		elif Input.is_action_just_released("ui_next_weapon"):_switch_weapon(DOWN)
 		
+
+	if not current_weapon.is_busy():
+		if Input.is_action_just_released("ui_previous_weapon"):
+			_switch_weapon(UP)
+		elif Input.is_action_just_released("ui_next_weapon"):
+				_switch_weapon(DOWN)
+
 	current_weapon.get_input()
 
 #change weapons
 func _switch_weapon(direction: int) -> void:
+	var prev_index: int = current_weapon.get_index()
 	var index: int = current_weapon.get_index()
 	if direction == UP:
 		index -= 1
@@ -123,6 +129,24 @@ func _switch_weapon(direction: int) -> void:
 	current_weapon.hide()
 	current_weapon = weapons.get_child(index)
 	current_weapon.show()
+	
+	emit_signal("weapon_switched", prev_index, index)
+
+
+func pick_up_weapon(weapon: Node2D) -> void:
+	weapon.get_parent().call_deferred("remove_child", weapon)
+	weapons.call_deferred("add_child", weapon)
+	weapon.set_deferred("owner", weapons)
+	current_weapon.hide()
+	current_weapon.cancel_attack()
+	current_weapon = weapon
+
+	#emit_signal("weapon_picked_up", weapon.get_texture())
+	#emit_signal("weapon_switched", prev_index, new_index)
+
+	
+func cancel_attack() -> void:
+	current_weapon.cancel_attack()
 	
 #move camera in the main scene to player position, make current and deactivate the real cam
 func switch_camera() -> void:

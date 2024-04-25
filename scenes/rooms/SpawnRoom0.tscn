@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d01gee2w5vpux"]
+[gd_scene load_steps=6 format=3 uid="uid://d01gee2w5vpux"]
 
 [ext_resource type="PackedScene" uid="uid://bdmxh02v1j1d6" path="res://scenes/rooms/room.tscn" id="1_1f7rl"]
 [ext_resource type="PackedScene" uid="uid://b53kkktu8jtnr" path="res://scenes/rooms/door.tscn" id="2_4gx7e"]
+[ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="3_lbx5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1onw"]
 size = Vector2(64, 32)
@@ -32,3 +33,7 @@ shape = SubResource("RectangleShape2D_y1onw")
 
 [node name="LightOccluder2D" parent="." index="10"]
 occluder = SubResource("OccluderPolygon2D_sguye")
+
+[node name="gun" parent="." index="11" instance=ExtResource("3_lbx5s")]
+position = Vector2(80, 117)
+on_floor = true

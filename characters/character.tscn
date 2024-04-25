@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/characterBody2D.gd" id="1_6e2f0"]
 [ext_resource type="PackedScene" uid="uid://cmcrdwrsn4icv" path="res://weapons/deathParticle.tscn" id="2_7xsgs"]
 [ext_resource type="Script" path="res://scripts/FSM.gd" id="2_gyrcr"]
-[ext_resource type="PackedScene" uid="uid://btu8nfu6xikpk" path="res://weapons/crowbar.tscn" id="4_a6odu"]
+[ext_resource type="PackedScene" uid="uid://btu8nfu6xikpk" path="res://weapons/sycth.tscn" id="4_a6odu"]
 [ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="5_4dy8b"]
 
 [node name="Character" type="CharacterBody2D"]

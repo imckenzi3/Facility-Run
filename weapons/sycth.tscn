@@ -1,21 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0ohwgsgni32e"]
+[gd_scene load_steps=16 format=3 uid="uid://btu8nfu6xikpk"]
 
-[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_cohm4"]
-[ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_adghg"]
-[ext_resource type="Texture2D" uid="uid://crp51xl38pyd1" path="res://weapons/r7zh8a.png" id="2_y5ffb"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_vbns8"]
+[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_sj3ni"]
+[ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_w8vuu"]
+[ext_resource type="Texture2D" uid="uid://2lojmpsvfb1o" path="res://weapons/hmag1n.png" id="3_8nc41"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_wlos7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_os7b5"]
-shader = ExtResource("2_adghg")
+shader = ExtResource("2_w8vuu")
 shader_parameter/active = false
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_woo7i"]
-radius = 7.07108
-height = 14.1422
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jb6hh"]
+radius = 4.24259
+height = 11.3137
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ropif"]
-shader = ExtResource("2_adghg")
+shader = ExtResource("2_w8vuu")
 shader_parameter/active = true
 shader_parameter/outline_color = Color(1, 0.470588, 0.831373, 1)
 
@@ -420,12 +420,12 @@ _data = {
 "charge_attack": SubResource("Animation_4s801")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rt2ys"]
-radius = 7.0
-height = 14.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wooj"]
+radius = 4.24264
+height = 11.3137
 
-[node name="gun" type="Node2D"]
-script = ExtResource("1_cohm4")
+[node name="sycth" type="Node2D"]
+script = ExtResource("1_sj3ni")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1, 0)
@@ -435,19 +435,19 @@ rotation = -1.5708
 texture_filter = 1
 material = SubResource("ShaderMaterial_os7b5")
 position = Vector2(7, 3)
-texture = ExtResource("2_y5ffb")
+texture = ExtResource("3_8nc41")
 offset = Vector2(5, 4)
+flip_v = true
 
 [node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]
 collision_layer = 0
 collision_mask = 12
-script = ExtResource("4_vbns8")
-damage = 2
+script = ExtResource("4_wlos7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
 position = Vector2(5, 4)
-rotation = 0.785398
-shape = SubResource("CapsuleShape2D_woo7i")
+rotation = -0.785398
+shape = SubResource("CapsuleShape2D_jb6hh")
 
 [node name="ChargeParticles2D" type="GPUParticles2D" parent="Node2D/Sprite2D"]
 material = SubResource("ShaderMaterial_ropif")
@@ -463,14 +463,11 @@ libraries = {
 }
 
 [node name="PlayerDetector" type="Area2D" parent="."]
-collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-light_mask = 0
-visibility_layer = 3
 position = Vector2(8, -12)
-shape = SubResource("CapsuleShape2D_rt2ys")
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_0wooj")
 
 [connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="Node2D/Sprite2D/Hitbox" method="_on_area_entered"]
-[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
