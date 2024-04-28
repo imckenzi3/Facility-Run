@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Character
 
+#Hit effect
+const HIT_EFFECT_SCENE: PackedScene = preload("res://characters/player/hitEffect.tscn")
+
 #player movement
 const FRICTION: float = 0.15 
 @export var acc: int = 40 #acceleration
@@ -52,6 +55,8 @@ func move() -> void:
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
+		#hit effect
+		_spawn_hit_effect()
 		self.hp -= dam
 
 		#display damage numbers
@@ -79,7 +84,10 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 func set_hp(new_hp: int) -> void:
 	hp = new_hp
 	emit_signal("hp_changed", new_hp)
-	
+
+func _spawn_hit_effect() -> void:
+	var hit_effetct: Sprite2D = HIT_EFFECT_SCENE.instantiate()
+	add_child(hit_effetct)
 func accelerate(direction):
 	velocity = velocity.move_toward(speed * direction, acc)
 	

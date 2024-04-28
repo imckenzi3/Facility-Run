@@ -33,3 +33,9 @@ energy = 0.7
 shadow_enabled = true
 texture = ExtResource("5_4dy8b")
 texture_scale = 3.66
+
+[node name="Head" type="Sprite2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Outline" type="Sprite2D" parent="."]

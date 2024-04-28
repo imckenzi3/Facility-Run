@@ -31,6 +31,7 @@ tangential_accel_max = 80.0
 
 [sub_resource type="Animation" id="Animation_5rbjc"]
 length = 0.001
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -425,7 +426,9 @@ radius = 4.24264
 height = 11.3137
 
 [node name="sycth" type="Node2D"]
+z_index = 1
 script = ExtResource("1_sj3ni")
+on_floor = true
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1, 0)

@@ -1,6 +1,7 @@
 @icon("res://assets/characters/Test_Dummy/Test_Dummy_Right.png") #icon 
 extends Character
 
+const DUST_SCENE: PackedScene = preload("res://characters/player/dust.tscn")
 enum {UP, DOWN} #weapon switch
 
 signal weapon_switched(prev_index, new_index)
@@ -14,6 +15,8 @@ signal weapon_droped(index)
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = get_node("Weapons")
 
+#Dust effect
+@onready var dust_position: Node2D = get_node("DustPosition")
 	
 func ready() -> void:
 	current_weapon = weapons.get_child(0).get_texture()
@@ -110,6 +113,8 @@ func get_input() -> void:
 			_switch_weapon(UP)
 		elif Input.is_action_just_released("ui_next_weapon"):
 				_switch_weapon(DOWN)
+		elif Input.is_action_just_pressed("ui_throw") and current_weapon.get_index() != 0:
+			_drop_weapon()
 
 	current_weapon.get_input()
 
@@ -144,9 +149,30 @@ func pick_up_weapon(weapon: Node2D) -> void:
 	#emit_signal("weapon_picked_up", weapon.get_texture())
 	#emit_signal("weapon_switched", prev_index, new_index)
 
-	
+func _drop_weapon() -> void:
+	#SavedData.weapons.remove_at(current_weapon.get_index() - 1)
+	var weapon_to_drop: Node2D = current_weapon
+	_switch_weapon(UP)
+
+	emit_signal("weapon_droped", weapon_to_drop.get_index())
+
+	weapons.call_deferred("remove_child", weapon_to_drop)
+	get_parent().call_deferred("add_child", weapon_to_drop)
+	weapon_to_drop.set_owner(get_parent())
+	await weapon_to_drop.tree_entered
+	weapon_to_drop.show()
+
+	var throw_dir: Vector2 = (get_global_mouse_position() - position).normalized()
+	weapon_to_drop.interpolate_pos(position, position + throw_dir * 50)
+
 func cancel_attack() -> void:
 	current_weapon.cancel_attack()
+
+func spawn_dust() ->void:
+	var dust: Sprite2D = DUST_SCENE.instantiate()
+	dust.position = dust_position.global_position
+	parent.get_child(get_index() - 1).add_sibling(dust)
+	
 	
 #move camera in the main scene to player position, make current and deactivate the real cam
 func switch_camera() -> void:
@@ -155,7 +181,15 @@ func switch_camera() -> void:
 	main_scene_camera.current = true
 	get_node("Camera2D").current = false
 
-
+func set_color(color_name, color):
+	match color_name:
+		"Primary":
+			%Primary.self_modulate = color
+		"Secondary":
+			%Secondary.self_modulate = color
+		"Outline":
+			%Outline.self_modulate = color
+		
 #no longer needed if player not jumping
 #func jump():
 	#if Input.is_action_just_pressed("ui_up"):

@@ -416,6 +416,7 @@ _data = {
 }
 
 [node name="weapon" type="Node2D"]
+z_index = 1
 script = ExtResource("1_efg27")
 
 [node name="Node2D" type="Node2D" parent="."]

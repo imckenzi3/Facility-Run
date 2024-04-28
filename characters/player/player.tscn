@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bbqprigllt4hc"]
+[gd_scene load_steps=36 format=3 uid="uid://bbqprigllt4hc"]
 
 [ext_resource type="Shader" path="res://characters/player/2DOutlineShader.gdshader" id="1_a1rla"]
 [ext_resource type="Shader" path="res://characters/player/shadow.gdshader" id="1_v1533"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="9_0hb0s"]
 [ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="9_vl3a2"]
 [ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="10_e72ql"]
+[ext_resource type="Texture2D" uid="uid://bsvkae4q7u6bm" path="res://assets/characters/Test_Dummy/character/character_base_primary.png.png" id="12_nhoxl"]
+[ext_resource type="Texture2D" uid="uid://dscnq1sp27am8" path="res://assets/characters/Test_Dummy/character/character_base_secondary.png.png" id="13_cqspa"]
+[ext_resource type="Texture2D" uid="uid://cydl7gke8sd2w" path="res://assets/characters/Test_Dummy/character/character_base_outline.png.png" id="14_7s20x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dsiqm"]
 shader = ExtResource("1_a1rla")
@@ -303,6 +306,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_dust"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wkb80"]
 _data = {
@@ -323,11 +340,10 @@ hp = 4
 script = ExtResource("2_q1q21")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.12549, 0.117647, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_gxwk1")
 sprite_frames = SubResource("SpriteFrames_4tuar")
-animation = &"idle"
+animation = &"move"
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -342,6 +358,8 @@ libraries = {
 position = Vector2(0, -10)
 
 [node name="Weapons" type="Node2D" parent="."]
+z_index = 1
+texture_filter = 1
 
 [node name="crowbar" parent="Weapons" instance=ExtResource("8_e4581")]
 
@@ -356,3 +374,24 @@ energy = 0.7
 shadow_enabled = true
 texture = ExtResource("10_e72ql")
 texture_scale = 3.66
+
+[node name="Primary" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+texture = ExtResource("12_nhoxl")
+
+[node name="Secondary" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+texture = ExtResource("13_cqspa")
+
+[node name="Outline" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+texture = ExtResource("14_7s20x")
+
+[node name="DustPosition" type="Node2D" parent="."]
+position = Vector2(0, 7)
