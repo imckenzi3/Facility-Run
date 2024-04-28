@@ -168,6 +168,7 @@ func _drop_weapon() -> void:
 func cancel_attack() -> void:
 	current_weapon.cancel_attack()
 
+#walking dust effect
 func spawn_dust() ->void:
 	var dust: Sprite2D = DUST_SCENE.instantiate()
 	dust.position = dust_position.global_position

@@ -4,4 +4,4 @@ extends Area2D
 
 func _on_body_entered(_body: CharacterBody2D)-> void:
 		collision_shape.set_deferred("disabled", true)
-		SceneTransistor.start_transition_to("res://Game.tscn")
+		SceneTransistor.start_transition_to("res://scenes/game.tscn")
