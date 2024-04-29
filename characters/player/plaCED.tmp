@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bbqprigllt4hc"]
+[gd_scene load_steps=36 format=3 uid="uid://bbqprigllt4hc"]
 
 [ext_resource type="Shader" path="res://characters/player/2DOutlineShader.gdshader" id="1_a1rla"]
 [ext_resource type="Shader" path="res://characters/player/shadow.gdshader" id="1_v1533"]
@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cxs60s0vitgmb" path="res://assets/characters/Test_Dummy/Test_Dummy_Idle_Right.png" id="4_roqpx"]
 [ext_resource type="Texture2D" uid="uid://bxq5m6nuq4ehm" path="res://assets/characters/Test_Dummy/Test_Dummy_Walk_Right.png" id="5_f1d21"]
 [ext_resource type="PackedScene" uid="uid://btu8nfu6xikpk" path="res://weapons/sycth.tscn" id="8_e4581"]
-[ext_resource type="Texture2D" uid="uid://xgfdjkqhd7nd" path="res://assets/characters/Test_Dummy/Test_Dummy_Walk_Right2.png" id="8_frmbw"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="9_0hb0s"]
+[ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="9_vl3a2"]
 [ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="10_e72ql"]
 [ext_resource type="Texture2D" uid="uid://bsvkae4q7u6bm" path="res://assets/characters/Test_Dummy/character/character_base_primary.png.png" id="12_nhoxl"]
 [ext_resource type="Texture2D" uid="uid://dscnq1sp27am8" path="res://assets/characters/Test_Dummy/character/character_base_secondary.png.png" id="13_cqspa"]
@@ -72,18 +72,6 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("5_f1d21")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4kmew"]
-atlas = ExtResource("8_frmbw")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6g7b"]
-atlas = ExtResource("8_frmbw")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2ko1"]
-atlas = ExtResource("8_frmbw")
-region = Rect2(64, 0, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_4tuar"]
 animations = [{
 "frames": [{
@@ -132,15 +120,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nx4u2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4kmew")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6g7b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y2ko1")
 }],
 "loop": true,
 "name": &"move",
@@ -322,10 +301,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 5, 4]
+"values": [0, 1, 2, 3, 4, 5]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -361,11 +340,10 @@ hp = 4
 script = ExtResource("2_q1q21")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.12549, 0.117647, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_gxwk1")
 sprite_frames = SubResource("SpriteFrames_4tuar")
-animation = &"idle"
+animation = &"move"
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -384,6 +362,8 @@ z_index = 1
 texture_filter = 1
 
 [node name="crowbar" parent="Weapons" instance=ExtResource("8_e4581")]
+
+[node name="weapon" parent="Weapons" instance=ExtResource("9_vl3a2")]
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]

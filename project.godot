@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 
 DamageNumbers="*res://scripts/DamageNumbers.gd"
 SceneTransistor="*res://Autoloads/SceneTransistor.tscn"
+SavedData="*res://Autoloads/SavedData.gd"
 
 [display]
 

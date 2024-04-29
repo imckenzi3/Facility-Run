@@ -5,6 +5,7 @@
 [ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_4b2ct"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_os7b5"]
+resource_local_to_scene = true
 shader = ExtResource("2_4b2ct")
 shader_parameter/active = false
 shader_parameter/outline_color = Color(1, 1, 1, 1)
@@ -148,6 +149,7 @@ tracks/9/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_8aj2m"]
+resource_local_to_scene = true
 resource_name = "attack"
 length = 1.25
 step = 0.05
@@ -237,6 +239,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_iovjn"]
+resource_local_to_scene = true
 resource_name = "cancel_attack"
 length = 0.3
 tracks/0/type = "value"
@@ -325,6 +328,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_xe4iu"]
+resource_local_to_scene = true
 resource_name = "charge"
 length = 1.2
 step = 0.2
@@ -366,6 +370,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_4s801"]
+resource_local_to_scene = true
 resource_name = "charge_attack"
 length = 2.0
 step = 0.2

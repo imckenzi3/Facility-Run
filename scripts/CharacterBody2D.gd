@@ -55,12 +55,18 @@ func move() -> void:
 #Taking Damage
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
-		#hit effect
-		_spawn_hit_effect()
+		
+		_spawn_hit_effect() #hit effect
 		self.hp -= dam
-
-		#display damage numbers
-		DamageNumbers.display_number(dam, damage_number_origin.global_position)
+		
+		#save hp for next level
+		if name == "Player":
+				SavedData.hp = hp
+				if hp == 0:
+					SceneTransistor.start_transition_to("res://scenes/game.tscn")
+					SavedData.reset_data()
+					
+		DamageNumbers.display_number(dam, damage_number_origin.global_position) #display damage numbers
 		#var is_critical self.crit_chance > randf()
 		
 		#if after taking damage the hp is greater than 0
