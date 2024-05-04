@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://7le8u6k1gwb7"]
+[gd_scene load_steps=8 format=3 uid="uid://7le8u6k1gwb7"]
 
 [ext_resource type="Texture2D" uid="uid://cvrvgg7bw2gtw" path="res://assets/ui/health_ui.png" id="1_0uirs"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_mujna"]
 [ext_resource type="Texture2D" uid="uid://crrypmk57spm" path="res://assets/ui/progress bar.png" id="2_nng7e"]
 [ext_resource type="PackedScene" uid="uid://bbqprigllt4hc" path="res://characters/player/player.tscn" id="2_ubo8u"]
 [ext_resource type="Script" path="res://scripts/Rooms.gd" id="4_k14fd"]
+[ext_resource type="PackedScene" uid="uid://cr6n2jf0djmfp" path="res://characters/npcs/test_npc.tscn" id="6_3y2pd"]
 
 [sub_resource type="GDScript" id="GDScript_umt1g"]
 script/source = "extends Node2D
@@ -97,6 +98,8 @@ script = ExtResource("4_k14fd")
 unique_name_in_owner = true
 z_index = 1
 position = Vector2(190, 240)
+
+[node name="test_npc" parent="." instance=ExtResource("6_3y2pd")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

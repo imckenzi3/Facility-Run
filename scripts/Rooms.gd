@@ -37,6 +37,7 @@ const LEFT_WALL_TILE_INDEX: int = 6
 @export var num_levels: int = 5
 
 @onready var player: CharacterBody2D = get_parent().get_node("Player")
+@onready var NPC: CharacterBody2D = get_parent().get_node("test_npc")
 
 #call func later
 func _ready() -> void:
@@ -51,6 +52,7 @@ func _spawn_rooms() -> void:
 		if i == 0:
 			room = SPAWN_ROOMS[randi() % SPAWN_ROOMS.size()].instantiate()
 			player.position = room.get_node("PlayerSpawnPos").position
+			NPC.position = room.get_node("NPCSpawnPos").position
 		else:
 			if i == num_levels - 1:
 				room = END_ROOMS[randi() % END_ROOMS.size()].instantiate()
@@ -61,7 +63,7 @@ func _spawn_rooms() -> void:
 			var previous_room_tilemap2: TileMap = previous_room.get_node("TileMap2")
 			var previous_room_door: StaticBody2D = previous_room.get_node("Doors/Door")
 			
-			## FUCK THIS CODE - Will fix l8tr
+			# - Will fix l8tr
 			var exit_tile_pos: Vector2 = previous_room_tilemap.local_to_map(previous_room_door.position) + Vector2i.UP * 1
 			
 			var corridor_height: int = randi() % 5 + 2

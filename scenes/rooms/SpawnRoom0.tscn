@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d01gee2w5vpux"]
+[gd_scene load_steps=6 format=3 uid="uid://d01gee2w5vpux"]
 
 [ext_resource type="PackedScene" uid="uid://bdmxh02v1j1d6" path="res://scenes/rooms/room.tscn" id="1_1f7rl"]
 [ext_resource type="PackedScene" uid="uid://b53kkktu8jtnr" path="res://scenes/rooms/door.tscn" id="2_4gx7e"]
 [ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="3_lbx5s"]
-[ext_resource type="PackedScene" uid="uid://cr6n2jf0djmfp" path="res://characters/npcs/test_npc.tscn" id="4_iksef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1onw"]
 size = Vector2(64, 32)
@@ -28,15 +27,15 @@ position = Vector2(112, 36)
 [node name="PlayerSpawnPos" type="Node2D" parent="." index="8"]
 position = Vector2(112, 112)
 
+[node name="NPCSpawnPos" type="Node2D" parent="." index="9"]
+position = Vector2(224, 224)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(112, 64)
 shape = SubResource("RectangleShape2D_y1onw")
 
-[node name="LightOccluder2D" parent="." index="10"]
+[node name="LightOccluder2D" parent="." index="11"]
 occluder = SubResource("OccluderPolygon2D_sguye")
 
-[node name="gun" parent="." index="11" instance=ExtResource("3_lbx5s")]
+[node name="gun" parent="." index="12" instance=ExtResource("3_lbx5s")]
 position = Vector2(80, 117)
-
-[node name="test_npc" parent="." index="12" instance=ExtResource("4_iksef")]
-position = Vector2(48, 65)

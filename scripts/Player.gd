@@ -42,7 +42,9 @@ func _restore_previous_state() -> void:
 	emit_signal("weapon_switched", weapons.get_child_count() - 1, SavedData.equipped_weapon_index)
 
 func _process(_delta: float) -> void:
-
+	if DialogManager.is_dialog_active:
+		return
+		
 	#movement - current main working player movement
 	var input_dir: Vector2 = input()
 	if input_dir != Vector2.ZERO: 
