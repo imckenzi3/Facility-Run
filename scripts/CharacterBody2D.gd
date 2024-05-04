@@ -60,7 +60,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		self.hp -= dam
 		
 		#save hp for next level
-		if name == "Player":
+		if name == "player":
 				SavedData.hp = hp
 				if hp == 0:
 					SceneTransistor.start_transition_to("res://scenes/game.tscn")
@@ -94,6 +94,7 @@ func set_hp(new_hp: int) -> void:
 func _spawn_hit_effect() -> void:
 	var hit_effetct: Sprite2D = HIT_EFFECT_SCENE.instantiate()
 	add_child(hit_effetct)
+	
 func accelerate(direction):
 	velocity = velocity.move_toward(speed * direction, acc)
 	

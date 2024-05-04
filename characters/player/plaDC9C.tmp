@@ -377,6 +377,7 @@ z_index = 1
 texture_filter = 1
 
 [node name="Crowbar" parent="Weapons" instance=ExtResource("9_o553r")]
+rotation_offset = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("9_0hb0s")

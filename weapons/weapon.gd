@@ -13,6 +13,10 @@ var tween: Tween = null
 @onready var player_detector: Area2D = $PlayerDetector
 @export var rotation_offset: int = 0
  
+#guns
+var bullet_speed = 2000
+var bullet = preload("res://weapons/bullet.tscn")
+
 func _ready() -> void:
 	if not on_floor:
 		player_detector.set_collision_mask_value(1, false)
@@ -74,3 +78,4 @@ func interpolate_pos(initial_pos: Vector2, final_pos: Vector2) -> void:
 
 func _on_Tween_tween_completed() -> void:
 	player_detector.set_collision_mask_value(2, true)
+

@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=3 uid="uid://cr6n2jf0djmfp"]
+
+[ext_resource type="PackedScene" uid="uid://busvdrve8cb8s" path="res://characters/character.tscn" id="1_6skqk"]
+[ext_resource type="Script" path="res://characters/npcs/test_npc.gd" id="2_ji0iw"]
+[ext_resource type="Shader" path="res://characters/player/2DOutlineShader.gdshader" id="3_81s1e"]
+[ext_resource type="Texture2D" uid="uid://d0pca11i0ldef" path="res://assets/characters/Test_Dummy/Test_Dummy_Idle.png" id="4_pruio"]
+[ext_resource type="PackedScene" uid="uid://cj8d455rnxcbl" path="res://interaction/interaction area/interaction_area.tscn" id="5_nlvur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6w8x"]
+shader = ExtResource("3_81s1e")
+shader_parameter/outline_color = Color(0.215686, 0.286275, 0, 1)
+shader_parameter/outline_size = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k33b7"]
+atlas = ExtResource("4_pruio")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syb3y"]
+atlas = ExtResource("4_pruio")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv8fs"]
+atlas = ExtResource("4_pruio")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js85h"]
+atlas = ExtResource("4_pruio")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k85vp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k33b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syb3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv8fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js85h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0hfn6"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tnrb2"]
+radius = 42.0119
+
+[node name="test_npc" instance=ExtResource("1_6skqk")]
+script = ExtResource("2_ji0iw")
+deathParticle = null
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_w6w8x")
+sprite_frames = SubResource("SpriteFrames_k85vp")
+animation = &"default"
+frame = 2
+frame_progress = 0.871159
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CapsuleShape2D_0hfn6")
+
+[node name="Weapons" parent="." index="5"]
+visible = false
+
+[node name="InteractionArea" parent="." index="10" instance=ExtResource("5_nlvur")]
+action_name = "talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" index="0"]
+shape = SubResource("CircleShape2D_tnrb2")

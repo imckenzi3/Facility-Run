@@ -428,7 +428,6 @@ height = 11.3137
 [node name="sycth" type="Node2D"]
 z_index = 1
 script = ExtResource("1_sj3ni")
-on_floor = true
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1, 0)
@@ -444,7 +443,7 @@ flip_v = true
 
 [node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]
 collision_layer = 0
-collision_mask = 12
+collision_mask = 13
 script = ExtResource("4_wlos7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
@@ -466,6 +465,7 @@ libraries = {
 }
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]

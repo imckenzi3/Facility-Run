@@ -10,20 +10,22 @@ signal weapon_droped(index)
 
 #Weapons
 #var current_weapon: Weapon 
-@onready var current_weapon: Node2D = $Weapons/crowbar
+@onready var current_weapon: Node2D = $Weapons/Crowbar
+#var current_weapon: Node2D
 
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = get_node("Weapons")
 
 #Dust effect
 @onready var dust_position: Node2D = get_node("DustPosition")
-	
+
 func ready() -> void:
 	current_weapon = weapons.get_child(0).get_texture()
-	
+
 	_restore_previous_state()
 	
 func _restore_previous_state() -> void:
+	print(SavedData.weapons) 
 	self.hp = SavedData.hp
 	for weapon in SavedData.weapons:
 		weapon = weapon.duplicate()
@@ -89,8 +91,7 @@ func get_input() -> void:
 		move_direction += Vector2.RIGHT
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP
-		
-
+	
 	if not current_weapon.is_busy():
 		if Input.is_action_just_released("ui_previous_weapon"):
 			_switch_weapon(UP)
@@ -181,5 +182,4 @@ func set_color(color_name, color):
 			%Secondary.self_modulate = color
 		"Outline":
 			%Outline.self_modulate = color
-
-
+#

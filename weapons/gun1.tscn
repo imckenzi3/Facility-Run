@@ -427,6 +427,7 @@ height = 14.0
 [node name="gun" type="Node2D"]
 z_index = 1
 script = ExtResource("1_cohm4")
+on_floor = true
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1, 0)
