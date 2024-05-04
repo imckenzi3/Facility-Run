@@ -14,7 +14,7 @@ var sfx: AudioStream
 var is_dialog_active = false
 var can_advance_line = false
 
-signal signal_dialog_finished()
+signal dialog_finished()
 
 func start_dialog(position: Vector2, lines: Array[String], speech_sfx: AudioStream, tail_position = 0.5):
 	if is_dialog_active:
@@ -51,6 +51,7 @@ func _unhandled_input(event):
 		if current_line_index >= dialog_lines.size():
 			is_dialog_active = false
 			current_line_index = 0
+			dialog_finished.emit()
 			return
 			
 		_show_text_box()

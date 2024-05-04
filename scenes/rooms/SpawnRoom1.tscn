@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://by78ghb74mkea"]
+[gd_scene load_steps=7 format=3 uid="uid://by78ghb74mkea"]
 
 [ext_resource type="PackedScene" uid="uid://bdmxh02v1j1d6" path="res://scenes/rooms/room.tscn" id="1_xpedv"]
 [ext_resource type="PackedScene" uid="uid://b53kkktu8jtnr" path="res://scenes/rooms/door.tscn" id="2_imrcs"]
 [ext_resource type="PackedScene" uid="uid://8ftc20xsfqw1" path="res://weapons/crowbar.tscn" id="3_qi0ri"]
+[ext_resource type="PackedScene" uid="uid://cr6n2jf0djmfp" path="res://characters/npcs/test_npc.tscn" id="4_qaugl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1onw"]
 size = Vector2(64, 32)
@@ -36,3 +37,6 @@ occluder = SubResource("OccluderPolygon2D_s56hn")
 
 [node name="weapon" parent="LightOccluder2D" index="0" instance=ExtResource("3_qi0ri")]
 position = Vector2(48, 116)
+
+[node name="test_npc" parent="." index="11" instance=ExtResource("4_qaugl")]
+position = Vector2(49, 64)
