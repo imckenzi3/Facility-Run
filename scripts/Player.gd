@@ -10,7 +10,7 @@ signal weapon_droped(index)
 
 #Weapons
 #var current_weapon: Weapon 
-@onready var current_weapon: Node2D = $Weapons/Crowbar
+@onready var current_weapon: Node2D = $Weapons/sycth
 #var current_weapon: Node2D
 
 @onready var parent: Node2D = get_parent()
@@ -94,7 +94,7 @@ func get_input() -> void:
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP
 	
-	if not current_weapon.is_busy():
+	if not current_weapon.is_busy(): #changes 
 		if Input.is_action_just_released("ui_previous_weapon"):
 			_switch_weapon(UP)
 		elif Input.is_action_just_released("ui_next_weapon"):

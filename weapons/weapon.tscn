@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://q07lwiibelqx"]
+[gd_scene load_steps=15 format=3 uid="uid://q07lwiibelqx"]
 
 [ext_resource type="Script" path="res://weapons/weapon.gd" id="1_efg27"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="1_vl4y2"]
 [ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_4b2ct"]
-[ext_resource type="Texture2D" uid="uid://c4tjc1dffttra" path="res://weapons/weapon_crowbar.png" id="3_re8kk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_os7b5"]
 resource_local_to_scene = true
@@ -470,10 +469,10 @@ position = Vector2(1, 0)
 rotation = -1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+modulate = Color(2, 2, 2, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_os7b5")
 position = Vector2(7, 3)
-texture = ExtResource("3_re8kk")
 offset = Vector2(5, 4)
 
 [node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]

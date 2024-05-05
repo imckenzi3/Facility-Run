@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bxq5m6nuq4ehm" path="res://assets/characters/Test_Dummy/Test_Dummy_Walk_Right.png" id="5_f1d21"]
 [ext_resource type="Texture2D" uid="uid://xgfdjkqhd7nd" path="res://assets/characters/Test_Dummy/Test_Dummy_Walk_Right2.png" id="8_frmbw"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="9_0hb0s"]
-[ext_resource type="PackedScene" uid="uid://btu8nfu6xikpk" path="res://weapons/sycth.tscn" id="9_b08l8"]
+[ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="9_w5wu3"]
 [ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="10_e72ql"]
 [ext_resource type="Texture2D" uid="uid://bsvkae4q7u6bm" path="res://assets/characters/Test_Dummy/character/character_base_primary.png.png" id="12_nhoxl"]
 [ext_resource type="Texture2D" uid="uid://dscnq1sp27am8" path="res://assets/characters/Test_Dummy/character/character_base_secondary.png.png" id="13_cqspa"]
@@ -377,7 +377,7 @@ unique_name_in_owner = true
 z_index = 1
 texture_filter = 1
 
-[node name="sycth" parent="Weapons" instance=ExtResource("9_b08l8")]
+[node name="gun" parent="Weapons" instance=ExtResource("9_w5wu3")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("9_0hb0s")

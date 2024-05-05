@@ -23,9 +23,11 @@ func _ready() -> void:
 	if not on_floor: #if on floor is false set these 
 		player_detector.set_collision_mask_value(1, false)
 		player_detector.set_collision_mask_value(2, false)
+	else:
+		animation_player.play("idle") #play idle animations
 		
 func get_input() -> void:
-		#check if attack is pressed and the attack animation is not playing
+	#check if attack is pressed and the attack animation is not playing
 	if Input.is_action_just_pressed("ui_attack") and not animation_player.is_playing():
 		animation_player.play("charge")
 	elif Input.is_action_just_released("ui_attack"):

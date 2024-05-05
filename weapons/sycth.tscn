@@ -443,7 +443,7 @@ flip_v = true
 
 [node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]
 collision_layer = 0
-collision_mask = 13
+collision_mask = 12
 script = ExtResource("4_wlos7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]

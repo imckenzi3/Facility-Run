@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://8ftc20xsfqw1"]
+[gd_scene load_steps=9 format=3 uid="uid://8ftc20xsfqw1"]
 
 [ext_resource type="PackedScene" uid="uid://q07lwiibelqx" path="res://weapons/weapon.tscn" id="1_2w1y2"]
 [ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_0fh5x"]
 [ext_resource type="Shader" path="res://weapons/HighlightPickup.gdshader" id="2_67u57"]
+[ext_resource type="Texture2D" uid="uid://c4tjc1dffttra" path="res://weapons/weapon_crowbar.png" id="4_jdjak"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dlgrh"]
 shader = ExtResource("2_67u57")
@@ -32,9 +33,13 @@ on_floor = true
 
 [node name="Sprite2D" parent="Node2D" index="0"]
 material = SubResource("ShaderMaterial_f6wjd")
+texture = ExtResource("4_jdjak")
 
 [node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
 shape = SubResource("CapsuleShape2D_wdvoh")
+
+[node name="PlayerDetector" parent="." index="2"]
+visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(8, -12)
