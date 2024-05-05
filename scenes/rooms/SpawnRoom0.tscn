@@ -8,7 +8,7 @@
 size = Vector2(64, 32)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sguye"]
-polygon = PackedVector2Array(20, 137, 20, 29, 96, 29, 128, 25, 16, 25, 16, 140, 208, 140, 208, 25, 128, 25, 96, 29, 204, 29, 204, 137)
+polygon = PackedVector2Array(20, 137, 20, 29, 96, 29, 96, 25, 16, 25, 16, 140, 208, 140, 208, 25, 128, 25, 128, 29, 204, 29, 204, 137)
 
 [node name="Room" instance=ExtResource("1_1f7rl")]
 
@@ -28,7 +28,7 @@ position = Vector2(112, 36)
 position = Vector2(112, 112)
 
 [node name="NPCSpawnPos" type="Node2D" parent="." index="9"]
-position = Vector2(224, 224)
+position = Vector2(176, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(112, 64)

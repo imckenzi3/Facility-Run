@@ -28,7 +28,7 @@ position = Vector2(112, 36)
 position = Vector2(112, 112)
 
 [node name="NPCSpawnPos" type="Node2D" parent="." index="9"]
-position = Vector2(224, 224)
+position = Vector2(184, 121)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(112, 64)

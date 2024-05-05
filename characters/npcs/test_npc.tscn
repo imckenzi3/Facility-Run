@@ -77,6 +77,7 @@ shape = SubResource("CapsuleShape2D_0hfn6")
 [node name="DamageNumbersOrigin" type="Node2D" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 energy = 0.7
 shadow_enabled = true
 texture = ExtResource("5_pi5xt")

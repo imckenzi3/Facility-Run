@@ -95,13 +95,16 @@ debug_enabled = true
 script = ExtResource("4_k14fd")
 
 [node name="Player" parent="." instance=ExtResource("2_ubo8u")]
-unique_name_in_owner = true
 z_index = 1
 position = Vector2(190, 240)
 
 [node name="test_npc" parent="." instance=ExtResource("6_3y2pd")]
+z_index = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.203922, 0.305882, 0.337255, 1)
 
 [connection signal="color_changed" from="UI/VBoxContainer/HBoxContainer3/PrimaryColorPickerButton" to="." method="_on_head_color_picker_button_color_changed"]
 [connection signal="color_changed" from="UI/VBoxContainer/HBoxContainer4/SecondaryColorPickerButton" to="." method="_on_body_color_picker_button_color_changed"]

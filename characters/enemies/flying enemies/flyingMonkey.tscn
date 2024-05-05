@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://7fw0vna7cqoj"]
+[gd_scene load_steps=34 format=3 uid="uid://7fw0vna7cqoj"]
 
 [ext_resource type="Script" path="res://characters/enemies/flying enemies/flyingMonkey.gd" id="1_krrjp"]
 [ext_resource type="Texture2D" uid="uid://c7xola47mbtpn" path="res://assets/characters/MankeyJungle_Idle_strip5.png" id="2_tvecr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dkohi33d6eaqw" path="res://assets/characters/MankeyJungle_Walk_strip6.png" id="4_jdh8j"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="6_g8pu8"]
 [ext_resource type="PackedScene" uid="uid://c3m6t7umfisw2" path="res://characters/HealthBar.tscn" id="7_2nugk"]
+[ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="9_qvpmk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xkkj3"]
 shader = ExtResource("3_82pb0")
@@ -359,5 +360,12 @@ offset_bottom = -13.0
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(0, -8)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.360784, 1, 1)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("9_qvpmk")
+texture_scale = 0.7
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]
