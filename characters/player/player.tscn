@@ -354,12 +354,12 @@ hp = 4
 script = ExtResource("2_q1q21")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 0.12549, 0.117647, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_gxwk1")
 sprite_frames = SubResource("SpriteFrames_4tuar")
-animation = &"move"
-frame_progress = 0.718004
+animation = &"idle"
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6c2d5")
