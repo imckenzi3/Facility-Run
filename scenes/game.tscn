@@ -99,7 +99,7 @@ z_index = 1
 position = Vector2(190, 240)
 
 [node name="test_npc" parent="." instance=ExtResource("6_3y2pd")]
-z_index = 1
+z_index = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

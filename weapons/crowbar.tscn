@@ -1,8 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://8ftc20xsfqw1"]
+[gd_scene load_steps=9 format=3 uid="uid://8ftc20xsfqw1"]
 
 [ext_resource type="PackedScene" uid="uid://q07lwiibelqx" path="res://weapons/weapon.tscn" id="1_2w1y2"]
 [ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_0fh5x"]
+[ext_resource type="Shader" path="res://weapons/HighlightPickup.gdshader" id="2_67u57"]
 [ext_resource type="Texture2D" uid="uid://c4tjc1dffttra" path="res://weapons/weapon_crowbar.png" id="2_bfu7a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlgrh"]
+shader = ExtResource("2_67u57")
+shader_parameter/speed = 1.0
+shader_parameter/mixColor = Vector4(0, 0, 0, 0)
+shader_parameter/minAlphaChannel = 0.0
+shader_parameter/Vertical = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f6wjd"]
 resource_local_to_scene = true
@@ -19,6 +27,7 @@ radius = 4.24264
 height = 18.3848
 
 [node name="Crowbar" instance=ExtResource("1_2w1y2")]
+material = SubResource("ShaderMaterial_dlgrh")
 on_floor = true
 
 [node name="Sprite2D" parent="Node2D" index="0"]

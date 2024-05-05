@@ -94,3 +94,14 @@ action_name = "talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_tnrb2")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+blend_mode = 1
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+energy = 0.7
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("5_pi5xt")
+texture_scale = 0.6

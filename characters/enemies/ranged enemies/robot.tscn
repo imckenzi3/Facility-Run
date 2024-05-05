@@ -357,5 +357,12 @@ shadow_enabled = true
 texture = ExtResource("8_717u6")
 texture_scale = 0.7
 
+[node name="PointLight2D2" type="PointLight2D" parent="." index="12"]
+energy = 0.7
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("8_717u6")
+texture_scale = 0.6
+
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

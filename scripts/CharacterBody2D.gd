@@ -57,7 +57,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
 		
 		_spawn_hit_effect() #hit effect
-		self.hp -= dam
+		self.hp -= dam #subtracte hp based on damage
 		
 		#save hp for next level
 		if name == "player":
@@ -76,6 +76,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		#player damaged here
 		if hp > 0:
 			state_machine.set_state(state_machine.states.hurt)
+			frameFreeze(0.1, 0.4) #free frame (time scale, duration)
 			velocity += dir * force
 			#print("player hit")
 		else:
@@ -101,6 +102,12 @@ func accelerate(direction):
 func add_friction():
 	velocity = velocity.move_toward(Vector2.ZERO, friction)
 
+#free frame effec
+func frameFreeze(timeScale, duration): #call when you want to freeze "time"
+	Engine.time_scale = timeScale
+	await(get_tree().create_timer(duration * timeScale).timeout)
+	Engine.time_scale = 1.0
+	
 #death particle
 #func Kill():
 	#var _particle = deathParticle.instantiate()

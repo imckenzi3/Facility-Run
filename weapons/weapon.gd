@@ -12,7 +12,9 @@ var tween: Tween = null
 #@onready var player_detector: Area2D = get_node("PlayerDetector")
 @onready var player_detector: Area2D = $PlayerDetector
 @export var rotation_offset: int = 0
- 
+
+#@onready var weapon_effect: GPUParticles2D = get_node("GPUParticles2D")
+
 #guns
 var bullet_speed = 2000
 var bullet = preload("res://weapons/bullet.tscn")

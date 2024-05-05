@@ -1,11 +1,14 @@
-extends Character
+extends CharacterBody2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var sprite = $AnimatedSprite2D
 @onready var speech_sound 
 
 const lines: Array[String] = [
-	"You did it!"
+	"Hi, welcome to the facility",
+	"Watch your step",
+	"Press space to end this conversation"
+	
 ]
 
 func _ready():

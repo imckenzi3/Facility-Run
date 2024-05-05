@@ -1,9 +1,9 @@
 extends Node2D
 
 #@onready var player = get_tree().get_first_node_in_group("player") #get player
-@onready var player = $Player #get player
+#@onready var player = $Player #get player
 #@onready var player: CharacterBody2D = get_tree().current_scene.get_node("player") #ref to player node
-
+@onready var player: CharacterBody2D = get_tree().current_scene.get_node("Player") #ref to player node
 @onready var label = $Label #get label
 
 const base_text = "[E to ]"
