@@ -176,6 +176,39 @@ func switch_camera() -> void:
 	main_scene_camera.current = true
 	get_node("Camera2D").current = false
 
+func take_damage(dam: int, dir: Vector2, force: int) -> void:
+	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
+		
+		_spawn_hit_effect() #hit effect
+		self.hp -= dam #subtracte hp based on damage
+		frameFreeze(0.1, 0.4) #free frame (time scale, duration)
+		#save hp for next level
+		if name == "player":
+				SavedData.hp = hp
+				if hp == 0:
+					SceneTransistor.start_transition_to("res://scenes/game.tscn")
+					SavedData.reset_data()
+					
+		DamageNumbers.display_number(dam, damage_number_origin.global_position) #display damage numbers
+		#var is_critical self.crit_chance > randf()
+		
+		#if after taking damage the hp is greater than 0
+		#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
+		#!!!knock back doesnt work - fix later if we want it
+		
+		#player damaged here
+		if hp > 0:
+			state_machine.set_state(state_machine.states.hurt)
+			velocity += dir * force
+			#print("player hit")
+		else:
+			state_machine.set_state(state_machine.states.dead)
+			velocity += dir * force * 2
+			
+			#player death here
+			#print("player died")
+			#Kill()
+	
 #players color
 func set_color(color_name, color):
 	match color_name:

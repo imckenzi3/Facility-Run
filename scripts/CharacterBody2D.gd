@@ -76,7 +76,6 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		#player damaged here
 		if hp > 0:
 			state_machine.set_state(state_machine.states.hurt)
-			frameFreeze(0.1, 0.4) #free frame (time scale, duration)
 			velocity += dir * force
 			#print("player hit")
 		else:
