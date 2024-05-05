@@ -47,6 +47,18 @@ texture_over = ExtResource("1_0uirs")
 texture_progress = ExtResource("2_nng7e")
 tint_progress = Color(0, 0.811765, 0.286275, 1)
 
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="Inventory" type="HBoxContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 visible = false
 offset_left = 13.0
@@ -110,3 +122,6 @@ color = Color(0.203922, 0.305882, 0.337255, 1)
 [connection signal="color_changed" from="UI/VBoxContainer/HBoxContainer4/SecondaryColorPickerButton" to="." method="_on_body_color_picker_button_color_changed"]
 [connection signal="color_changed" from="UI/VBoxContainer/HBoxContainer5/OutlineColorPickerButton" to="." method="_on_outline_color_picker_button_color_changed"]
 [connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]
+[connection signal="weapon_droped" from="Player" to="UI" method="_on_player_weapon_droped"]
+[connection signal="weapon_picked_up" from="Player" to="UI" method="_on_player_weapon_picked_up"]
+[connection signal="weapon_switched" from="Player" to="UI" method="_on_player_weapon_switched"]

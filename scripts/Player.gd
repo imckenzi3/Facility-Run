@@ -19,8 +19,9 @@ signal weapon_droped(index)
 #Dust effect
 @onready var dust_position: Node2D = get_node("DustPosition")
 
-func ready() -> void:
-	current_weapon = weapons.get_child(0).get_texture()
+func _ready() -> void:
+	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
+	#current_weapon = weapons.get_child(0).get_texture()
 
 	_restore_previous_state()
 	
@@ -155,8 +156,6 @@ func _drop_weapon() -> void:
 	weapon_to_drop.show()
 	var throw_dir: Vector2 = (get_global_mouse_position() - position).normalized()
 	weapon_to_drop.interpolate_pos(position, position + throw_dir * 50)
-	
-	
 	
 #cancel attack
 func cancel_attack() -> void:
