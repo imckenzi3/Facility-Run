@@ -13,17 +13,17 @@ var tween: Tween = null
 @onready var player_detector: Area2D = $PlayerDetector
 @export var rotation_offset: int = 0
 
-#@onready var weapon_effect: GPUParticles2D = get_node("GPUParticles2D")
+@onready var weapon_effect: GPUParticles2D = get_node("GPUParticles2D")
 
 #guns
 var bullet_speed = 2000
 var bullet = preload("res://weapons/bullet.tscn")
 
 func _ready() -> void:
-	if not on_floor:
+	if not on_floor: #if on floor is false set these 
 		player_detector.set_collision_mask_value(1, false)
 		player_detector.set_collision_mask_value(2, false)
-
+		
 func get_input() -> void:
 		#check if attack is pressed and the attack animation is not playing
 	if Input.is_action_just_pressed("ui_attack") and not animation_player.is_playing():
@@ -53,9 +53,7 @@ func cancel_attack() -> void:
 	animation_player.play("RESET")
 
 func is_busy() -> bool:
-	if animation_player.is_playing() or charge_particles.emitting:
-		return true
-	return false
+	return animation_player.is_playing() or charge_particles.emitting
 
 func get_texture() -> Texture2D:
 	return get_node("Node2D/Sprite2D").texture
@@ -66,6 +64,10 @@ func _on_player_detector_body_entered(body: CharacterBody2D) -> void:
 		player_detector.set_collision_mask_value(2, false)
 		body.pick_up_weapon(self)
 		position = Vector2.ZERO
+		
+		cancel_attack()
+		weapon_effect.emitting = false #turn effect particles off
+		
 	else:
 		if tween:
 			tween.kill()
@@ -75,9 +77,12 @@ func interpolate_pos(initial_pos: Vector2, final_pos: Vector2) -> void:
 	position = initial_pos
 	tween = create_tween()
 	tween.tween_property(self, "position", final_pos, 0.8).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	
+	weapon_effect.emitting = true #turn effect particles on
+	animation_player.play("idle") #play idle animations
+	
 	tween.connect("finished", _on_Tween_tween_completed)
 	player_detector.set_collision_mask_value(1, true)
 
 func _on_Tween_tween_completed() -> void:
 	player_detector.set_collision_mask_value(2, true)
-

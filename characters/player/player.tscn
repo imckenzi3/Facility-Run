@@ -388,6 +388,7 @@ texture = ExtResource("10_e72ql")
 texture_scale = 0.6
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 blend_mode = 1
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0ohwgsgni32e"]
+[gd_scene load_steps=18 format=3 uid="uid://c0ohwgsgni32e"]
 
 [ext_resource type="Script" path="res://weapons/weapon.gd" id="1_cohm4"]
 [ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_adghg"]
@@ -153,6 +153,7 @@ tracks/9/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_8aj2m"]
+resource_local_to_scene = true
 resource_name = "attack"
 length = 1.25
 step = 0.05
@@ -242,6 +243,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_iovjn"]
+resource_local_to_scene = true
 resource_name = "cancel_attack"
 length = 0.3
 tracks/0/type = "value"
@@ -330,6 +332,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_xe4iu"]
+resource_local_to_scene = true
 resource_name = "charge"
 length = 1.2
 step = 0.2
@@ -371,6 +374,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_4s801"]
+resource_local_to_scene = true
 resource_name = "charge_attack"
 length = 2.0
 step = 0.2
@@ -411,18 +415,58 @@ tracks/2/keys = {
 "values": [-1.5708, 0.0, 1.5708, 3.14159, 4.71239]
 }
 
+[sub_resource type="Animation" id="Animation_4o8m6"]
+resource_name = "idle"
+length = 1.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(15, 0), Vector2(12, 0), Vector2(15, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.785398]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_43xfg"]
 _data = {
 "RESET": SubResource("Animation_5rbjc"),
 "attack": SubResource("Animation_8aj2m"),
 "cancel_attack": SubResource("Animation_iovjn"),
 "charge": SubResource("Animation_xe4iu"),
-"charge_attack": SubResource("Animation_4s801")
+"charge_attack": SubResource("Animation_4s801"),
+"idle": SubResource("Animation_4o8m6")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rt2ys"]
 radius = 7.0
 height = 14.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5k06s"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(7.5, -6, 0)
+emission_shape_scale = Vector3(0.75, 6, 1)
+emission_shape = 3
+emission_box_extents = Vector3(7, 1, 1)
+damping_min = 1.0
+damping_max = 5.0
+scale_min = 0.2
 
 [node name="gun" type="Node2D"]
 z_index = 1
@@ -473,6 +517,11 @@ light_mask = 0
 visibility_layer = 3
 position = Vector2(8, -12)
 shape = SubResource("CapsuleShape2D_rt2ys")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_5k06s")
+trail_enabled = true
 
 [connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="Node2D/Sprite2D/Hitbox" method="_on_area_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
