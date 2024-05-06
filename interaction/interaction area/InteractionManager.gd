@@ -6,7 +6,7 @@ extends Node2D
 @onready var player: CharacterBody2D = get_tree().current_scene.get_node("Player") #ref to player node
 @onready var label = $Label #get label
 
-const base_text = "[E to ]"
+const base_text = "[E] to "
 
 var active_areas = [] #hold all interaction areas that can be interacted with
 var can_interact = true

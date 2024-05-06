@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://btu8nfu6xikpk"]
+[gd_scene load_steps=17 format=3 uid="uid://btu8nfu6xikpk"]
 
 [ext_resource type="Script" path="res://weapons/weapon.gd" id="1_sj3ni"]
 [ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_w8vuu"]
@@ -425,6 +425,16 @@ _data = {
 radius = 4.24264
 height = 11.3137
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iawlr"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(7.5, -6, 0)
+emission_shape_scale = Vector3(0.75, 6, 1)
+emission_shape = 3
+emission_box_extents = Vector3(7, 1, 1)
+damping_min = 1.0
+damping_max = 5.0
+scale_min = 0.2
+
 [node name="sycth" type="Node2D"]
 z_index = 1
 script = ExtResource("1_sj3ni")
@@ -472,5 +482,11 @@ collision_mask = 3
 position = Vector2(8, -12)
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_0wooj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_iawlr")
+trail_enabled = true
 
 [connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="Node2D/Sprite2D/Hitbox" method="_on_area_entered"]

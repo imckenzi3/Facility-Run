@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d01gee2w5vpux"]
+[gd_scene load_steps=8 format=3 uid="uid://d01gee2w5vpux"]
 
 [ext_resource type="PackedScene" uid="uid://bdmxh02v1j1d6" path="res://scenes/rooms/room.tscn" id="1_1f7rl"]
 [ext_resource type="PackedScene" uid="uid://b53kkktu8jtnr" path="res://scenes/rooms/door.tscn" id="2_4gx7e"]
 [ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="3_lbx5s"]
+[ext_resource type="PackedScene" uid="uid://8ftc20xsfqw1" path="res://weapons/crowbar.tscn" id="4_kfyhm"]
+[ext_resource type="PackedScene" uid="uid://i3xqjynf5yr2" path="res://scenes/rooms/decorations and traps/torch.tscn" id="5_d1oa2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1onw"]
 size = Vector2(64, 32)
@@ -28,7 +30,7 @@ position = Vector2(112, 36)
 position = Vector2(112, 112)
 
 [node name="NPCSpawnPos" type="Node2D" parent="." index="9"]
-position = Vector2(176, 128)
+position = Vector2(168, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(112, 64)
@@ -38,4 +40,11 @@ shape = SubResource("RectangleShape2D_y1onw")
 occluder = SubResource("OccluderPolygon2D_sguye")
 
 [node name="gun" parent="." index="12" instance=ExtResource("3_lbx5s")]
-position = Vector2(80, 117)
+position = Vector2(40, 139)
+
+[node name="Crowbar" parent="." index="13" instance=ExtResource("4_kfyhm")]
+position = Vector2(39, 119)
+
+[node name="Torch" parent="." index="14" instance=ExtResource("5_d1oa2")]
+position = Vector2(72, 40)
+shadow_enabled = true

@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://i3xqjynf5yr2"]
+
+[ext_resource type="Texture2D" uid="uid://dq6boc51ciq8k" path="res://assets/TorchLight.png" id="1_ntwpw"]
+[ext_resource type="Texture2D" uid="uid://csmpnqsny7q3r" path="res://assets/tilesets/full spritesheet.png" id="2_iusqf"]
+[ext_resource type="Script" path="res://scenes/rooms/decorations and traps/torch.gd" id="2_w6v78"]
+[ext_resource type="PackedScene" uid="uid://cj8d455rnxcbl" path="res://interaction/interaction area/interaction_area.tscn" id="4_86gqd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwi2q"]
+atlas = ExtResource("2_iusqf")
+region = Rect2(112, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaex5"]
+atlas = ExtResource("2_iusqf")
+region = Rect2(128, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qrl8"]
+atlas = ExtResource("2_iusqf")
+region = Rect2(144, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axqmf"]
+atlas = ExtResource("2_iusqf")
+region = Rect2(160, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bfo7"]
+atlas = ExtResource("2_iusqf")
+region = Rect2(176, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rnxkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwi2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaex5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qrl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axqmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bfo7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0ieh"]
+size = Vector2(52, 34)
+
+[node name="Torch" type="PointLight2D"]
+color = Color(0.854902, 0.0823529, 0.121569, 1)
+texture = ExtResource("1_ntwpw")
+script = ExtResource("2_w6v78")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.627451, 0, 0.239216, 1)
+sprite_frames = SubResource("SpriteFrames_rnxkg")
+frame_progress = 0.444776
+
+[node name="InteractionArea" parent="." instance=ExtResource("4_86gqd")]
+action_name = "toggle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_d0ieh")

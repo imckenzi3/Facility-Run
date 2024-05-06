@@ -38,9 +38,6 @@ texture = ExtResource("4_jdjak")
 [node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
 shape = SubResource("CapsuleShape2D_wdvoh")
 
-[node name="PlayerDetector" parent="." index="2"]
-visible = false
-
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(8, -12)
 rotation = -0.785398

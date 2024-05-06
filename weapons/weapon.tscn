@@ -450,7 +450,7 @@ _data = {
 "idle": SubResource("Animation_4o8m6")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ycom"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hky8q"]
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(7.5, -6, 0)
 emission_shape_scale = Vector3(0.75, 6, 1)
@@ -504,8 +504,8 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 32
-process_material = SubResource("ParticleProcessMaterial_2ycom")
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_hky8q")
 trail_enabled = true
 
 [connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="Node2D/Sprite2D/Hitbox" method="_on_area_entered"]

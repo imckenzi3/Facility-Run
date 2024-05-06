@@ -5,15 +5,18 @@
 
 [node name="InventoryItem" type="TextureRect"]
 custom_minimum_size = Vector2(16, 16)
-offset_right = 12.0
-offset_bottom = 12.0
+offset_right = 16.0
+offset_bottom = 16.0
 texture = ExtResource("1_sdm0q")
 stretch_mode = 5
 script = ExtResource("2_d7na8")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
-layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 border_color = Color(1, 0.937255, 0.92549, 1)
 editor_only = false

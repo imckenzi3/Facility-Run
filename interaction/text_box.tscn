@@ -70,7 +70,6 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="NextIndicator" type="AnimatedSprite2D" parent="NinePatchRect/Control2"]
-visible = false
 position = Vector2(-2, -2)
 sprite_frames = SubResource("SpriteFrames_yeji1")
 autoplay = "default"

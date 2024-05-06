@@ -51,10 +51,11 @@ tint_progress = Color(0, 0.811765, 0.286275, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_left = 10.0
+offset_top = -30.0
+offset_right = 10.0
+offset_bottom = -30.0
 grow_vertical = 0
-size_flags_horizontal = 3
 
 [node name="Inventory" type="HBoxContainer" parent="UI/PanelContainer"]
 layout_mode = 2

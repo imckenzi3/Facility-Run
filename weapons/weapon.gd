@@ -69,7 +69,6 @@ func _on_player_detector_body_entered(body: CharacterBody2D) -> void:
 		
 		cancel_attack()
 		weapon_effect.emitting = false #turn effect particles off
-		
 	else:
 		if tween:
 			tween.kill()

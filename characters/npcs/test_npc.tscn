@@ -163,6 +163,7 @@ visible = false
 blend_mode = 1
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
 energy = 0.7
 blend_mode = 2
 shadow_enabled = true

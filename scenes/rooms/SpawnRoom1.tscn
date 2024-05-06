@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://by78ghb74mkea"]
+[gd_scene load_steps=8 format=3 uid="uid://by78ghb74mkea"]
 
 [ext_resource type="PackedScene" uid="uid://bdmxh02v1j1d6" path="res://scenes/rooms/room.tscn" id="1_xpedv"]
 [ext_resource type="PackedScene" uid="uid://b53kkktu8jtnr" path="res://scenes/rooms/door.tscn" id="2_imrcs"]
 [ext_resource type="PackedScene" uid="uid://8ftc20xsfqw1" path="res://weapons/crowbar.tscn" id="3_qi0ri"]
+[ext_resource type="PackedScene" uid="uid://i3xqjynf5yr2" path="res://scenes/rooms/decorations and traps/torch.tscn" id="3_rqlka"]
+[ext_resource type="PackedScene" uid="uid://c0ohwgsgni32e" path="res://weapons/gun1.tscn" id="4_s5i0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1onw"]
 size = Vector2(64, 32)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s56hn"]
-polygon = PackedVector2Array(96, 29, 128, 25, 16, 25, 16, 140, 208, 140, 208, 25, 128, 25, 96, 29, 204, 29, 204, 137, 20, 137, 20, 29)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j7j81"]
+polygon = PackedVector2Array(20, 32, 20, 137, 204, 137, 204, 32, 208, 32, 208, 140, 16, 140, 16, 32)
 
 [node name="Room" instance=ExtResource("1_xpedv")]
 
@@ -28,14 +30,21 @@ position = Vector2(112, 36)
 position = Vector2(112, 112)
 
 [node name="NPCSpawnPos" type="Node2D" parent="." index="9"]
-position = Vector2(184, 121)
+position = Vector2(168, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(112, 64)
 shape = SubResource("RectangleShape2D_y1onw")
 
 [node name="LightOccluder2D" parent="." index="11"]
-occluder = SubResource("OccluderPolygon2D_s56hn")
+occluder = SubResource("OccluderPolygon2D_j7j81")
 
-[node name="weapon" parent="LightOccluder2D" index="0" instance=ExtResource("3_qi0ri")]
+[node name="weapon" parent="." index="12" instance=ExtResource("3_qi0ri")]
 position = Vector2(48, 116)
+
+[node name="gun" parent="." index="13" instance=ExtResource("4_s5i0l")]
+position = Vector2(42, 138)
+
+[node name="Torch" parent="." index="14" instance=ExtResource("3_rqlka")]
+position = Vector2(152, 40)
+shadow_enabled = true

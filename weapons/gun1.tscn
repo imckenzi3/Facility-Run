@@ -519,7 +519,7 @@ position = Vector2(8, -12)
 shape = SubResource("CapsuleShape2D_rt2ys")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_5k06s")
 trail_enabled = true
 
