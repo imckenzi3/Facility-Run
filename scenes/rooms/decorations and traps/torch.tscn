@@ -59,7 +59,8 @@ script = ExtResource("2_w6v78")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.627451, 0, 0.239216, 1)
 sprite_frames = SubResource("SpriteFrames_rnxkg")
-frame_progress = 0.444776
+autoplay = "default"
+frame_progress = 0.807514
 
 [node name="InteractionArea" parent="." instance=ExtResource("4_86gqd")]
 action_name = "toggle"

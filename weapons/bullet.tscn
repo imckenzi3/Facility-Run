@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://sd2518winl52" path="res://assets/weapons/bullet.png" id="1_d6uta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k85mn"]
-size = Vector2(6, 3)
+size = Vector2(56, 32)
 
 [node name="Bullet" type="RigidBody2D"]
 z_index = 1
@@ -17,4 +17,5 @@ rotation = 1.5708
 texture = ExtResource("1_d6uta")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_k85mn")
