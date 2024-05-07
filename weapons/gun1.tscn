@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0ohwgsgni32e"]
+[gd_scene load_steps=19 format=3 uid="uid://c0ohwgsgni32e"]
 
-[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_cohm4"]
+[ext_resource type="Script" path="res://weapons/gun.gd" id="1_cj1lw"]
 [ext_resource type="Shader" path="res://characters/player/hitflash.gdshader" id="2_adghg"]
-[ext_resource type="Texture2D" uid="uid://crp51xl38pyd1" path="res://weapons/r7zh8a.png" id="2_y5ffb"]
+[ext_resource type="PackedScene" uid="uid://ca8a0ubd6caea" path="res://weapons/bullet_smoke.tscn" id="2_gassw"]
+[ext_resource type="Texture2D" uid="uid://crp51xl38pyd1" path="res://weapons/gun.png" id="3_ahuqh"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_vbns8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_os7b5"]
@@ -160,86 +161,76 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/path = NodePath("SlashSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.8, 1.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-1.5708, 2.0944, 2.0944, -1.5708]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node2D/Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.8, 1.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.174533, 0.174533, -0.174533]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SlashSprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 6, 9, 12, 15, 18, 21, 22]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Sprite2D:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Sprite2D/ChargeParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Node2D/Sprite2D:material:shader_parameter/active")
+tracks/3/path = NodePath("Node2D/Sprite2D/Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Node2D/Sprite2D/ChargeParticles2D:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Node2D/Sprite2D/Hitbox/CollisionShape2D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [false, true]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SlashSprite2D:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SlashSprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.35),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"shoot"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_iovjn"]
@@ -381,38 +372,14 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Sprite2D:rotation")
+tracks/0/path = NodePath("Node2D/Sprite2D/Hitbox/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.523599, -1.0472, -1.5708, -0.523599, 1.0472, 1.0472, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node2D/Sprite2D/Hitbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.6, 0.8, 1, 1.2, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [-1.5708, 0.0, 1.5708, 3.14159, 4.71239]
 }
 
 [sub_resource type="Animation" id="Animation_4o8m6"]
@@ -470,18 +437,20 @@ scale_min = 0.2
 
 [node name="gun" type="Node2D"]
 z_index = 1
-script = ExtResource("1_cohm4")
+script = ExtResource("1_cj1lw")
+smokeScene = ExtResource("2_gassw")
 on_floor = true
+ranged_weapon = true
+rotation_offset = 180
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(1, 0)
 rotation = -1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_os7b5")
 position = Vector2(7, 3)
-texture = ExtResource("2_y5ffb")
+texture = ExtResource("3_ahuqh")
 offset = Vector2(5, 4)
 
 [node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]
@@ -515,7 +484,7 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 light_mask = 0
 visibility_layer = 3
-position = Vector2(8, -12)
+position = Vector2(7, -12)
 shape = SubResource("CapsuleShape2D_rt2ys")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

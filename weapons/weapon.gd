@@ -1,8 +1,12 @@
-@icon("res://weapons/hmag1n.png") #icon 
+@icon("res://weapons/base.png") #icon 
 extends Node2D
 class_name Weapon
 
 @export var on_floor: bool = false
+
+@export var ranged_weapon: bool = false
+
+var can_active_ability: bool = true
 
 var tween: Tween = null
 
@@ -16,8 +20,8 @@ var tween: Tween = null
 @onready var weapon_effect: GPUParticles2D = get_node("GPUParticles2D")
 
 #guns
-var bullet_speed = 2000
-var bullet = preload("res://weapons/bullet.tscn")
+#var bullet_speed = 2000
+#var bullet = preload("res://weapons/bullet.tscn")
 
 func _ready() -> void:
 	if not on_floor: #if on floor is false set these 
@@ -37,19 +41,22 @@ func get_input() -> void:
 			animation_player.play("charge_attack")
 
 func move(mouse_direction: Vector2) -> void:
-	if not animation_player.is_playing() or animation_player.current_animation == "charge":
-		#update the rotation of the shovel using the angle of the mouse direction
-		#rotation = rad_to_deg(mouse_direction.angle()) + rotation_offset
-		rotation = mouse_direction.angle()
-		#	rotation = mouse_direction.angle()
-		#rad_to_deg(mouse_direction.angle()) + rotation_offset
-		#set the knockback direction of the hitbox with the mouse direction
-		hitbox.knockback_direction = mouse_direction # doesnt even work - theres no knock back in dark souls anyawys
-			
-		if scale.y == 1 and mouse_direction.x < 0:
-			scale.y = -1
-		elif scale.y == -1 and mouse_direction.x > 0:
-			scale.y = 1
+	if ranged_weapon:
+		rotation_degrees = rad_to_deg(mouse_direction.angle()) + rotation_offset
+	else:
+		if not animation_player.is_playing() or animation_player.current_animation == "charge":
+			#update the rotation of the shovel using the angle of the mouse direction
+			#rotation = rad_to_deg(mouse_direction.angle()) + rotation_offset
+			rotation = mouse_direction.angle()
+			#	rotation = mouse_direction.angle()
+			#rad_to_deg(mouse_direction.angle()) + rotation_offset
+			#set the knockback direction of the hitbox with the mouse direction
+			hitbox.knockback_direction = mouse_direction # doesnt even work - theres no knock back in dark souls anyawys
+				
+			if scale.y == 1 and mouse_direction.x < 0:
+				scale.y = -1
+			elif scale.y == -1 and mouse_direction.x > 0:
+				scale.y = 1
 
 func cancel_attack() -> void:
 	animation_player.play("RESET")
