@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://biy65cmg70kfy"]
+[gd_scene load_steps=29 format=3 uid="uid://biy65cmg70kfy"]
 
 [ext_resource type="PackedScene" uid="uid://1vmcl3p6n5ac" path="res://characters/enemies/enemy.tscn" id="1_cxufv"]
 [ext_resource type="Shader" path="res://characters/player/shadow.gdshader" id="2_75l30"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_8xy0v"]
 [ext_resource type="Script" path="res://scripts/RobotFSM.gd" id="3_m058k"]
 [ext_resource type="Texture2D" uid="uid://dtrpder2u7wg2" path="res://assets/characters/enemies/flying_robot.png" id="6_s5k65"]
+[ext_resource type="Texture2D" uid="uid://dq6boc51ciq8k" path="res://assets/TorchLight.png" id="7_x7kjt"]
 [ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="8_717u6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kf3km"]
@@ -313,6 +314,14 @@ material = SubResource("ShaderMaterial_kf3km")
 sprite_frames = SubResource("SpriteFrames_mqcf6")
 animation = &"idle"
 
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" index="0"]
+position = Vector2(2, 1)
+scale = Vector2(3.125, 3.125)
+color = Color(1, 0.415686, 0.121569, 1)
+shadow_enabled = true
+texture = ExtResource("7_x7kjt")
+texture_scale = 0.1
+
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CircleShape2D_isb3y")
 
@@ -351,6 +360,7 @@ offset_bottom = -10.0
 position = Vector2(0, -8)
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="11"]
+visible = false
 color = Color(0, 0.356863, 0.552941, 1)
 energy = 0.8
 shadow_enabled = true

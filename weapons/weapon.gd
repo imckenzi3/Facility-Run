@@ -41,7 +41,7 @@ func get_input() -> void:
 			animation_player.play("charge_attack")
 
 func move(mouse_direction: Vector2) -> void:
-	if ranged_weapon:
+	if ranged_weapon: 
 		rotation_degrees = rad_to_deg(mouse_direction.angle()) + rotation_offset
 	else:
 		if not animation_player.is_playing() or animation_player.current_animation == "charge":
