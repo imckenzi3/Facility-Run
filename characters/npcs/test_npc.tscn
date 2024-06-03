@@ -146,12 +146,6 @@ shadow_enabled = true
 texture = ExtResource("5_pi5xt")
 texture_scale = 3.66
 
-[node name="Head" type="Sprite2D" parent="."]
-
-[node name="Body" type="Sprite2D" parent="."]
-
-[node name="Outline" type="Sprite2D" parent="."]
-
 [node name="InteractionArea" parent="." instance=ExtResource("5_nlvur")]
 action_name = "talk"
 

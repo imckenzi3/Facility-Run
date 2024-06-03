@@ -18,6 +18,7 @@ signal weapon_droped(index)
 
 #Dust effect
 @onready var dust_position: Node2D = get_node("DustPosition")
+@onready var gun = $Weapons/gun
 
 func _ready() -> void:
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
@@ -61,7 +62,7 @@ func _process(_delta: float) -> void:
 		animated_sprite.flip_h = false
 	elif input_dir.x < 0 and not animated_sprite.flip_h:
 		animated_sprite.flip_h = true
-	
+		
 	#weapon position around player
 	current_weapon.move(mouse_direction)
 	
@@ -94,7 +95,7 @@ func get_input() -> void:
 		move_direction += Vector2.RIGHT
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP
-	
+	 	
 	if not current_weapon.is_busy(): #changes 
 		if Input.is_action_just_released("ui_previous_weapon"):
 			_switch_weapon(UP)
@@ -167,7 +168,6 @@ func spawn_dust() ->void:
 	dust.position = dust_position.global_position
 	parent.get_child(get_index() - 1).add_sibling(dust)
 	
-	
 #move camera in the main scene to player position, make current and deactivate the real cam
 func switch_camera() -> void:
 	var main_scene_camera: Camera2D = get_parent().get_node("Camera2D")
@@ -180,7 +180,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		
 		_spawn_hit_effect() #hit effect
 		self.hp -= dam #subtracte hp based on damage
-		frameFreeze(0.1, 0.4) #free frame (time scale, duration)
+		frameFreeze(0.1, 0.3) #free frame (time scale, duration)
 		#save hp for next level
 		if name == "player":
 				SavedData.hp = hp
@@ -208,13 +208,4 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 			#print("player died")
 			#Kill()
 	
-#players color
-func set_color(color_name, color):
-	match color_name:
-		"Primary":
-			%Primary.self_modulate = color
-		"Secondary":
-			%Secondary.self_modulate = color
-		"Outline":
-			%Outline.self_modulate = color
-#
+

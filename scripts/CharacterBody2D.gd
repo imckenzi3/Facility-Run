@@ -12,15 +12,8 @@ const FRICTION: float = 0.15
 var move_direction: Vector2 = Vector2.ZERO
 var veloctiy: Vector2 = Vector2.ZERO
 
-#jump - no longer needed at this moment
 const speed = 45
-#const jump_power = -650 
-
 const friction = 60 #friction
-
-#jumping
-const max_jumps = 2
-var current_jumps = 1
 
 #stateMachine
 @onready var state_machine: Node = get_node("FiniteStateMachine")
@@ -32,21 +25,18 @@ signal hp_changed(new_hp)
 #animated_Sprite
 @onready var animated_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
-#flying
+#flying - for enemyies
 @export var flying: bool = false
 
 #damage numbers
 @onready var damage_number_origin: Node2D = get_node("DamageNumbersOrigin")
 
-#death particles in testing
-@export var deathParticle: PackedScene
-
 #loop over and over
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	velocity = lerp(velocity, Vector2.ZERO, FRICTION)
-	
-#player movement
+
+#enemy movement
 func move() -> void:
 	move_direction = move_direction.normalized()
 	velocity += move_direction * acc
@@ -67,11 +57,9 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 					SavedData.reset_data()
 					
 		DamageNumbers.display_number(dam, damage_number_origin.global_position) #display damage numbers
-		#var is_critical self.crit_chance > randf()
 		
-		#if after taking damage the hp is greater than 0
-		#set the state to hurt and apply a normal knockback (theres no knockbacks in darksouls) are there?
-		#!!!knock back doesnt work - fix later if we want it
+		# TODO: Critical Damage TODO
+		#var is_critical self.crit_chance > randf() 
 		
 		#player damaged here
 		if hp > 0:
@@ -81,11 +69,9 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		else:
 			state_machine.set_state(state_machine.states.dead)
 			velocity += dir * force * 2
-			
 			#player death here
 			#print("player died")
-			#Kill()
-		
+
 #called every time we modify the value of the hp variable
 func set_hp(new_hp: int) -> void:
 	hp = new_hp
@@ -106,13 +92,4 @@ func frameFreeze(timeScale, duration): #call when you want to freeze "time"
 	Engine.time_scale = timeScale
 	await(get_tree().create_timer(duration * timeScale).timeout)
 	Engine.time_scale = 1.0
-	
-#death particle
-#func Kill():
-	#var _particle = deathParticle.instantiate()
-	#_particle.position = global_position
-	#_particle.rotation = global_position
-	#_particle.emitting = true
-	#get_tree().current_scene.add_child(_particle)
-	#
-	#queue_free()
+

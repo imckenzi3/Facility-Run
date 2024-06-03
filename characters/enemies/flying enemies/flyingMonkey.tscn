@@ -336,7 +336,7 @@ shape = SubResource("CircleShape2D_6cx73")
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("6_g8pu8")
-knockback_force = 750
+knockback_force = 1500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_2ss2q")

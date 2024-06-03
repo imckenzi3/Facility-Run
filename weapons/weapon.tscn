@@ -465,7 +465,6 @@ z_index = 1
 script = ExtResource("1_efg27")
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(1, 0)
 rotation = -1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]

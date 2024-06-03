@@ -14,7 +14,6 @@ var distance_to_player: float
 @onready var attack_timer: Timer = get_node("AttackTimer")
 @onready var aim_raycast: RayCast2D = get_node("AimRayCast2D")
 
-
 func _on_PathTimer_timeout() -> void:
 	if is_instance_valid(player):
 		distance_to_player = (player.position - global_position).length()

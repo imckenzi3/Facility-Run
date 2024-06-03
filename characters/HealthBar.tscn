@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3m6t7umfisw2"]
+[gd_scene load_steps=7 format=3 uid="uid://c3m6t7umfisw2"]
 
 [ext_resource type="Script" path="res://scripts/ProgressBar.gd" id="1_7qcre"]
+[ext_resource type="Texture2D" uid="uid://d020jy57bcsta" path="res://assets/ui/health_uitest.png" id="2_tbu1e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghmor"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -23,6 +24,13 @@ max_value = 2.0
 value = 2.0
 show_percentage = false
 script = ExtResource("1_7qcre")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 110.0
+offset_bottom = 20.0
+scale = Vector2(0.14, 0.14)
+texture_over = ExtResource("2_tbu1e")
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
 show_behind_parent = true

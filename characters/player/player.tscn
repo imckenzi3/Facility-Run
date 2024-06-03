@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bbqprigllt4hc"]
+[gd_scene load_steps=35 format=3 uid="uid://bbqprigllt4hc"]
 
 [ext_resource type="Shader" path="res://characters/player/2DOutlineShader.gdshader" id="1_a1rla"]
 [ext_resource type="Shader" path="res://characters/player/shadow.gdshader" id="1_v1533"]
@@ -11,9 +11,6 @@
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="9_0hb0s"]
 [ext_resource type="PackedScene" uid="uid://btu8nfu6xikpk" path="res://weapons/sycth.tscn" id="9_b08l8"]
 [ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="10_e72ql"]
-[ext_resource type="Texture2D" uid="uid://bsvkae4q7u6bm" path="res://assets/characters/Test_Dummy/character/character_base_primary.png.png" id="12_nhoxl"]
-[ext_resource type="Texture2D" uid="uid://dscnq1sp27am8" path="res://assets/characters/Test_Dummy/character/character_base_secondary.png.png" id="13_cqspa"]
-[ext_resource type="Texture2D" uid="uid://cydl7gke8sd2w" path="res://assets/characters/Test_Dummy/character/character_base_outline.png.png" id="14_7s20x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dsiqm"]
 shader = ExtResource("1_a1rla")
@@ -141,7 +138,6 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6c2d5"]
-radius = 8.0
 
 [sub_resource type="Animation" id="Animation_nhvyi"]
 resource_name = "dead"
@@ -390,7 +386,6 @@ texture = ExtResource("10_e72ql")
 texture_scale = 0.6
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 blend_mode = 1
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
@@ -401,23 +396,6 @@ shadow_enabled = true
 texture = ExtResource("10_e72ql")
 texture_scale = 0.6
 
-[node name="Primary" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-texture_filter = 1
-texture = ExtResource("12_nhoxl")
-
-[node name="Secondary" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-texture_filter = 1
-texture = ExtResource("13_cqspa")
-
-[node name="Outline" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-texture_filter = 1
-texture = ExtResource("14_7s20x")
-
 [node name="DustPosition" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 7)

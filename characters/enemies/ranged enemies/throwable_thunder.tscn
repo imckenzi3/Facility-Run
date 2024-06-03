@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bctf7bwqfub5h"]
+[gd_scene load_steps=4 format=3 uid="uid://bctf7bwqfub5h"]
 
 [ext_resource type="PackedScene" uid="uid://cckg0qxbi7ak2" path="res://weapons/projectile.tscn" id="1_v3xyv"]
+[ext_resource type="Texture2D" uid="uid://bu7gwrlxxtn0p" path="res://assets/light.png" id="2_bvxxc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2kj3x"]
 resource_local_to_scene = true
@@ -8,6 +9,12 @@ radius = 2.12132
 height = 15.5564
 
 [node name="throwableThunder" instance=ExtResource("1_v3xyv")]
+knockback_force = 750
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CapsuleShape2D_2kj3x")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="2"]
+shadow_enabled = true
+texture = ExtResource("2_bvxxc")
+texture_scale = 0.1

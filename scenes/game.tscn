@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://7le8u6k1gwb7"]
 
-[ext_resource type="Texture2D" uid="uid://cvrvgg7bw2gtw" path="res://assets/ui/health_ui.png" id="1_0uirs"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_mujna"]
+[ext_resource type="Texture2D" uid="uid://d020jy57bcsta" path="res://assets/ui/health_uitest.png" id="2_m1e6a"]
 [ext_resource type="Texture2D" uid="uid://crrypmk57spm" path="res://assets/ui/progress bar.png" id="2_nng7e"]
 [ext_resource type="PackedScene" uid="uid://bbqprigllt4hc" path="res://characters/player/player.tscn" id="2_ubo8u"]
 [ext_resource type="Script" path="res://scripts/Rooms.gd" id="4_k14fd"]
@@ -10,25 +10,9 @@
 [sub_resource type="GDScript" id="GDScript_umt1g"]
 script/source = "extends Node2D
 
-#randomizes the seed, need for random rooms!
-func _init() -> void:
-	randomize()
-	
 
-
-func _on_head_color_picker_button_color_changed(color):
-	%Player.set_color(\"Primary\", color)
-	pass # Replace with function body.
-
-
-func _on_body_color_picker_button_color_changed(color):
-	%Player.set_color(\"Secondary\", color)
-	pass # Replace with function body.
-
-
-func _on_outline_color_picker_button_color_changed(color):
-	%Player.set_color(\"Outline\", color)
-	pass # Replace with function body.
+func _init() -> void: 
+	randomize() #randomizes the seed, need for random rooms!
 "
 
 [node name="Game" type="Node2D"]
@@ -43,9 +27,9 @@ offset_top = 12.0
 offset_right = 92.0
 offset_bottom = 28.0
 value = 23.0
-texture_over = ExtResource("1_0uirs")
+texture_over = ExtResource("2_m1e6a")
 texture_progress = ExtResource("2_nng7e")
-tint_progress = Color(0, 0.811765, 0.286275, 1)
+tint_progress = Color(0.513726, 0.054902, 0, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
 anchors_preset = 2
@@ -58,49 +42,6 @@ offset_bottom = -30.0
 grow_vertical = 0
 
 [node name="Inventory" type="HBoxContainer" parent="UI/PanelContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-visible = false
-offset_left = 13.0
-offset_top = 37.0
-offset_right = 177.0
-offset_bottom = 168.0
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Head"
-
-[node name="PrimaryColorPickerButton" type="ColorPickerButton" parent="UI/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Body"
-
-[node name="SecondaryColorPickerButton" type="ColorPickerButton" parent="UI/VBoxContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer5"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Outline"
-
-[node name="OutlineColorPickerButton" type="ColorPickerButton" parent="UI/VBoxContainer/HBoxContainer5"]
-custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 
 [node name="Rooms" type="NavigationAgent2D" parent="."]
@@ -119,9 +60,6 @@ z_index = 2
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.203922, 0.305882, 0.337255, 1)
 
-[connection signal="color_changed" from="UI/VBoxContainer/HBoxContainer3/PrimaryColorPickerButton" to="." method="_on_head_color_picker_button_color_changed"]
-[connection signal="color_changed" from="UI/VBoxContainer/HBoxContainer4/SecondaryColorPickerButton" to="." method="_on_body_color_picker_button_color_changed"]
-[connection signal="color_changed" from="UI/VBoxContainer/HBoxContainer5/OutlineColorPickerButton" to="." method="_on_outline_color_picker_button_color_changed"]
 [connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]
 [connection signal="weapon_droped" from="Player" to="UI" method="_on_player_weapon_droped"]
 [connection signal="weapon_picked_up" from="Player" to="UI" method="_on_player_weapon_picked_up"]

@@ -60,10 +60,13 @@ script = ExtResource("2_w6v78")
 modulate = Color(0.627451, 0, 0.239216, 1)
 sprite_frames = SubResource("SpriteFrames_rnxkg")
 autoplay = "default"
-frame_progress = 0.807514
+frame_progress = 0.327993
 
 [node name="InteractionArea" parent="." instance=ExtResource("4_86gqd")]
+visible = false
 action_name = "toggle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_d0ieh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

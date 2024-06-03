@@ -5,4 +5,4 @@ func _ready() -> void:
 
 
 func _on_animation_changed() -> void:
-	queue_free() #when animation stops playing - free the scene
+	self.queue_free() #when animation stops playing - free the scene

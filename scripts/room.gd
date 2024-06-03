@@ -55,8 +55,10 @@ func _spawn_enemies() -> void:
 		enemy.position = enemy_position.position
 		call_deferred("add_child", enemy)
 		
-		var spawn_explosion: AnimatedSprite2D = SPAWN_EXPLOSION_SCENE.instantiate()
+		var spawn_explosion: AnimatedSprite2D = SPAWN_EXPLOSION_SCENE.instantiate() #spawn Explosion before enemy
 		spawn_explosion.global_position = enemy_position.position
+		#await spawn_explosion.animation_finished #waits for spawn effect to finish then spawn enemy
+		
 		call_deferred("add_child", spawn_explosion)
 		
 func _on_player_detector_body_entered(_body: CharacterBody2D) -> void:
